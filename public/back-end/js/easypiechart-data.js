@@ -26,5 +26,6 @@ $(function() {
    });
 });
 
-$('#calendar').datepicker({
-	});
+if ($('#calendar')!= null && $('#calendar') != undefined && $('#calendar').length != 0) {
+  $('#calendar').datepicker({});
+}

@@ -105,6 +105,10 @@ var randomScalingFactor = function(){ return Math.round(Math.random()*1000)};
 				];
 
 window.onload = function(){
+	if (document.getElementById("line-chart") == null || document.getElementById("line-chart") == undefined)
+	{
+		return;
+	}
 	var chart1 = document.getElementById("line-chart").getContext("2d");
 	window.myLine = new Chart(chart1).Line(lineChartData, {
 		responsive: true

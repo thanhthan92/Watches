@@ -75,11 +75,6 @@ h3, h4 {
 	font-size: 0.75em;
 }
 
-.form-control {
-	border: 1px solid #eee;
-	box-shadow: none;
-}
-
 .form-control:focus {
 	border: 1px solid #30a5ff;
 	outline: 0;
@@ -929,11 +924,85 @@ h1.page-header {
 	overflow: scroll;
 }
 
+/* The switch checkbox */
+.switch-checkbox {
+	display: inline-block;
+	float: left;
+	height: 34px;
+	position: relative;
+	width: 60px;
+}
 
+.switch-checkbox input[type=checkbox] {
+	display:none;
+}
 
+.switch-checkbox .nob {
+	background-color: #CCC;
+	border-radius: 34px;
+	bottom: 0;
+	cursor: pointer;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
 
+.switch-checkbox .nob:before {
+	background-color: #FFF;
+	border-radius: 50%;
+	bottom: 4px;
+	content: "";
+	height: 26px;
+	left: 4px;
+	position: absolute;
+	width: 26px;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
 
+input[type=checkbox]:checked + .nob {
+	background-color: #2196F3;
+}
 
+input[type=checkbox]:checked + .nob:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
 
+input[type=checkbox]:focus + .nob {
+	box-shadow: 0 0 1px #2196F3;
+}
 
+.switch-checkbox + .website-warantee {
+	background: url(../../images/general/icon-guarantee.png) no-repeat center;
+	height: 34px;
+}
 
+.switch-checkbox + .website-authentic {
+	background: url(../../images/general/icon-authentic.png) no-repeat center;
+	height: 34px;
+}
+
+.switch-checkbox + .website-cash {
+	background: url(../../images/general/icon-cash.png) no-repeat center;
+	height: 34px;
+}
+
+.switch-checkbox + .website-ship {
+	background: url(../../images/general/icon-ship.png) no-repeat center;
+	height: 34px;
+}
+
+.switch-checkbox + .website-safe {
+	background: url(../../images/general/icon-safe.png) no-repeat center;
+	height: 34px;
+}
+
+.switch-checkbox + .website-support {
+	background: url(../../images/general/icon-support.png) no-repeat center;
+	height: 34px;
+}

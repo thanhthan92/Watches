@@ -8,8 +8,10 @@
 	<script src="{!!url('public/back-end/js/bootstrap-datepicker.js')!!}"></script>
 	<script type='text/javascript' src='{!!url('public/js/script.js')!!}'></script> 
 	<script>
-		$('#calendar').datepicker({
-		});
+		
+		if ($('#calendar')!= null && $('#calendar') != undefined && $('#calendar').length != 0) {
+		  $('#calendar').datepicker({});
+		}
 
 		!function ($) {
 		    $(document).on("click","ul.nav li.parent > a > span.icon", function(){          

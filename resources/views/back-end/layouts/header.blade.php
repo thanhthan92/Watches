@@ -1,9 +1,17 @@
+<?php
+	$title = 'Trang quản trị';
+	$website_name = DB::table('website_metadata')->where('key', 'website_name')->value('value');
+	if (!empty($website_name)) {
+		$title .= ' - ' . $website_name;
+	}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My Shops : Trang quản trị - Dashboard</title>
+<title>{!! $title; !!}</title>
 
 <link href="{!!url('public/back-end/css/bootstrap.min.css')!!}" rel="stylesheet">
 <link href="{!!url('public/back-end/css/datepicker3.css')!!}" rel="stylesheet">

@@ -47,28 +47,20 @@ Route::group(['middleware' => 'admin'], function () {
            Route::get('edit/{id}',['as'  =>'geteditcat','uses' => 'CategoryController@getedit'])->where('id','[0-9]+');
            Route::post('edit/{id}',['as' =>'posteditcat','uses' => 'CategoryController@postedit'])->where('id','[0-9]+');
     	});
-         // -------------------- quan ly danh muc--------------------
-        Route::group(['prefix' => '/sanpham'], function() {
-           Route::get('/{loai}/add',['as'        =>'getaddpro','uses' => 'ProductsController@getadd']);
-           Route::post('/{loai}/add',['as'       =>'postaddpro','uses' => 'ProductsController@postadd']);
-
-           Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getlist']);
-           Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
-           
-           Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getedit'])->where('id','[0-9]+');
-           Route::post('/{loai}/edit/{id}',['as' =>'posteditpro','uses' => 'ProductsController@postedit'])->where('id','[0-9]+');
-      });
-       // -------------------- quan ly danh muc-----------------------------
-        Route::group(['prefix' => '/news'], function() {
-           Route::get('/add',['as'        =>'getaddnews','uses' => 'NewsController@getadd']);
-           Route::post('/add',['as'       =>'postaddnews','uses' => 'NewsController@postadd']);
-
-           Route::get('/',['as'       =>'getnews','uses' => 'NewsController@getlist']);
-           Route::get('/del/{id}',['as'   =>'getdellnews','uses' => 'NewsController@getdel'])->where('id','[0-9]+');
-           
-           Route::get('/edit/{id}',['as'  =>'geteditnews','uses' => 'NewsController@getedit'])->where('id','[0-9]+');
-           Route::post('/edit/{id}',['as' =>'posteditnews','uses' => 'NewsController@postedit'])->where('id','[0-9]+');
-      });
+        // -------------------quan ly san pham--------------------
+        Route::group(['prefix' => '/products'], function() {
+          Route::get('/',             ['as' => 'getlist',         'uses' => 'ProductsController@getlist']);
+          Route::get('/details',      ['as' => 'getdetails',      'uses' => 'ProductsController@getdetails']);
+          Route::get('/details/{id}', ['as' => 'getdetailsedit',  'uses' => 'ProductsController@getdetails'])->where('id','[0-9]+');
+          Route::post('/details',     ['as' => 'postdetails',     'uses' => 'ProductsController@postdetails']);
+          Route::post('/details/{id}',['as' => 'postdetailsedit', 'uses' => 'ProductsController@postdetails'])->where('id','[0-9]+');
+          Route::get('/del/{id}',     ['as' => 'getdell',         'uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
+        });
+        // ---------------------quan ly thong tin chung ve website----
+        Route::group(['prefix' => '/information'], function() {
+           Route::get('/',  ['as' =>'getinformation',  'uses' => 'InfoController@getinformation']);
+           Route::post('/', ['as' =>'postinformation', 'uses' => 'InfoController@postinformation']);
+        });
         // -------------------- quan ly đơn đặt hàng--------------------
         Route::group(['prefix' => '/donhang'], function() {;
 
