@@ -13,13 +13,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{!! $title; !!}</title>
 
-<link href="{!!url('public/back-end/css/bootstrap.min.css')!!}" rel="stylesheet">
-<link href="{!!url('public/back-end/css/datepicker3.css')!!}" rel="stylesheet">
-<link href="{!!url('public/back-end/css/styles.css')!!}" rel="stylesheet">
-<script type="text/javascript" src="{!! url('public/plugin/ckeditor/ckeditor.js') !!}"></script>
+<link href="{{asset('/back-end/css/bootstrap.min.css')}}" rel="stylesheet">
+<link href="{{asset('/back-end/css/datepicker3.css')}}" rel="stylesheet">
+<link href="{{asset('/back-end/css/styles.css')}}" rel="stylesheet">
+<script type="text/javascript" src="{!! url('public/plugin/ckeditor/ckeditor.js') }}"></script>
 
 <!--Icons-->
-<script src="{!!url('public/back-end/js/lumino.glyphs.js')!!}"></script>
+<script src="{{asset('/back-end/js/lumino.glyphs.js')}}"></script>
 
 <!--[if lt IE 9]>
 <script src="public/js/html5shiv.js"></script>
