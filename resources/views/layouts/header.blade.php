@@ -7,12 +7,13 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="{!!url('public/images/logo.png')!!}" alt="logo" width="50" height="20">
+    <link rel="icon" href="{{ asset('/images/logo.png')}}" alt="logo" width="50" height="20">
 
     <title>Fshop : Hệ thông bán hàng trực tuyến SCODEWEB</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="{!!url('public/bootstrap/css/bootstrap.min.css')!!}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}" />
+    <!-- <link href="{{ asset('/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet"> -->
     <!-- Fonts -->
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
@@ -31,22 +32,22 @@
         }
     </style>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    {{-- <link href="{!!url('public/bootstrap/css/ie10-viewport-bug-workaround.css')!!}" rel="stylesheet"> --}}
+    {{-- <link href="{{ asset('/bootstrap/css/ie10-viewport-bug-workaround.css')}}" rel="stylesheet"> --}}
 
     <!-- Custom styles for this template -->
-    <link href="{!!url('public/front-end/front-end-style.css')!!}" rel="stylesheet">
-    <link rel='stylesheet' id='camera-css'  href="{!!url('public/css/camera.css')!!}" type='text/css' media='all'>
-    <link rel='stylesheet' id='camera-css' href="{!!url('public/css/cam-1.css')!!}" type='text/css' media='all'>
-    <link rel='stylesheet' id='test-css' href="{!!url('public/css/header-custom.css')!!}" type='text/css' media='all'>
-    <link rel='stylesheet' href="{!!url('public/css/custom.css')!!}" type='text/css' media='all'>
+    <link href="{{ asset('/front-end/front-end-style.css')}}" rel="stylesheet">
+    <link rel='stylesheet' id='camera-css'  href="{{ asset('/css/camera.css')}}" type='text/css' media='all'>
+    <link rel='stylesheet' id='camera-css' href="{{ asset('/css/cam-1.css')}}" type='text/css' media='all'>
+    <link rel='stylesheet' id='test-css' href="{{ asset('/css/header-custom.css')}}" type='text/css' media='all'>
+    <link rel='stylesheet' href="{{ asset('/css/custom.css')}}" type='text/css' media='all'>
 
-    <link href="{!!asset('css/blueimp-gallery.css')!!}" rel="stylesheet">
+    <link href="{!!asset('css/blueimp-gallery.css')}}" rel="stylesheet">
     <!-- <link rel='stylesheet' id='camera-css'  href='public/css/camera.css' type='text/css' media='all'>  -->
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    {{-- <script type='text/javascript' src="{!!url('public/bootstrap/js/ie-emulation-modes-warning.js')!!}"></script> --}}
-    <script type='text/javascript' src="{!!url('public/js/ads.js')!!}"></script>
+    {{-- <script type='text/javascript' src="{{ asset('/bootstrap/js/ie-emulation-modes-warning.js')}}"></script> --}}
+    <script type='text/javascript' src="{{ asset('/js/ads.js')}}"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
