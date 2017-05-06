@@ -16,7 +16,7 @@
 <link href="{{asset('/back-end/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('/back-end/css/datepicker3.css')}}" rel="stylesheet">
 <link href="{{asset('/back-end/css/styles.css')}}" rel="stylesheet">
-<script type="text/javascript" src="{!! url('public/plugin/ckeditor/ckeditor.js') }}"></script>
+<script type="text/javascript" src="{!! url('/plugin/ckeditor/ckeditor.js') !!}"></script>
 
 <!--Icons-->
 <script src="{{asset('/back-end/js/lumino.glyphs.js')}}"></script>

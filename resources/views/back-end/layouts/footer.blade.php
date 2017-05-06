@@ -1,12 +1,12 @@
 
-	<script src="{!!url('public/back-end/js/jquery-1.11.1.min.js')!!}"></script>
-	<script src="{!!url('public/back-end/js/bootstrap.min.js')!!}"></script>
-	<script src="{!!url('public/back-end/js/chart.min.js')!!}"></script>
-	<script src="{!!url('public/back-end/js/chart-data.js')!!}"></script>
-	<script src="{!!url('public/back-end/js/easypiechart.js')!!}"></script>
-	<script src="{!!url('public/back-end/js/easypiechart-data.js')!!}"></script>
-	<script src="{!!url('public/back-end/js/bootstrap-datepicker.js')!!}"></script>
-	<script type='text/javascript' src='{!!url('public/js/script.js')!!}'></script> 
+	<script src="{!!url('/back-end/js/jquery-1.11.1.min.js')!!}"></script>
+	<script src="{!!url('/back-end/js/bootstrap.min.js')!!}"></script>
+	<script src="{!!url('/back-end/js/chart.min.js')!!}"></script>
+	<script src="{!!url('/back-end/js/chart-data.js')!!}"></script>
+	<script src="{!!url('/back-end/js/easypiechart.js')!!}"></script>
+	<script src="{!!url('/back-end/js/easypiechart-data.js')!!}"></script>
+	<script src="{!!url('/back-end/js/bootstrap-datepicker.js')!!}"></script>
+	<script type='text/javascript' src='{!!url('/js/script.js')!!}'></script> 
 	<script>
 		
 		if ($('#calendar')!= null && $('#calendar') != undefined && $('#calendar').length != 0) {
