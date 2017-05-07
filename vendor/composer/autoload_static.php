@@ -278,7 +278,7 @@ class ComposerStaticInitd5afea7ab5ebd0c54348b7712a4a22bb
     );
 
     public static $classMap = array (
-        'Addmin_UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Addmin_UsersTableSeeder.php',
+        'Admin_UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Admin_UsersTableSeeder.php',
         'CreateAdminUsersTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_13_131139_create_admin_users_table.php',
         'CreateBannersTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_24_014742_create_banners_table.php',
         'CreateCategoryTable' => __DIR__ . '/../..' . '/database/migrations/2016_11_24_011241_create_category_table.php',
@@ -767,6 +767,14 @@ class ComposerStaticInitd5afea7ab5ebd0c54348b7712a4a22bb
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'Product_BandTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_BandTableSeeder.php',
+        'Product_BrandTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_BrandTableSeeder.php',
+        'Product_CaseTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_CaseTableSeeder.php',
+        'Product_DialTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_DialTableSeeder.php',
+        'Product_GenderTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_GenderTableSeeder.php',
+        'Product_MovementTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_MovementTableSeeder.php',
+        'Product_SeriesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_SeriesTableSeeder.php',
+        'Product_StyleTableSeeder' => __DIR__ . '/../..' . '/database/seeds/Product_StyleTableSeeder.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
         'SebastianBergmann\\Comparator\\Comparator' => __DIR__ . '/..' . '/sebastian/comparator/src/Comparator.php',
         'SebastianBergmann\\Comparator\\ComparisonFailure' => __DIR__ . '/..' . '/sebastian/comparator/src/ComparisonFailure.php',

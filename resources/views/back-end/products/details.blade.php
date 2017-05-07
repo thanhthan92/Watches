@@ -7,7 +7,7 @@
                 <li><a href="{!!url('admin/products')!!}" style="text-decoration: none">Quản lý sản phẩm</a></li>
                 <?php
                     $breadcrumb = 'Thêm';
-                    if ($data->id != null) {
+                    if ($data->id) {
                         $breadcrumb = 'Cập nhật';
                     }
                 ?>
@@ -42,28 +42,52 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-brand-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Brand</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <select name="brand_id" class="form-control" id="product-brand-id"></select>
+                        <select name="brand_id" class="form-control" id="product-brand-id">
+                            <?php foreach ($brands as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->brand_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-gender-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Gender</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <select name="gender_id" class="form-control" id="product-gender-id"></select>
+                        <select name="gender_id" class="form-control" id="product-gender-id">
+                            <?php foreach ($genders as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->gender_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-series-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Chủng loại</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <select name="series_id" class="form-control" id="product-series-id"></select>
+                        <select name="series_id" class="form-control" id="product-series-id">
+                            <?php foreach ($series as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->series_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-movement-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Bộ máy (movement)</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <select name="movement_id" class="form-control" id="product-movement-id"></select>
+                        <select name="movement_id" class="form-control" id="product-movement-id">
+                            <?php foreach ($movements as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->movement_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
@@ -74,7 +98,13 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-case-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Chất liệu</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <select name="case_id" class="form-control" id="product-case-id"></select>
+                        <select name="case_id" class="form-control" id="product-case-id">
+                            <?php foreach ($cases as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->case_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
@@ -101,7 +131,13 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-dial-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Chất liệu</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <select name="dial_id" class="form-control" id="product-dial-id"></select>
+                        <select name="dial_id" class="form-control" id="product-dial-id">
+                            <?php foreach ($dials as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->dial_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
@@ -120,7 +156,13 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-band-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Chất liệu</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <select name="band_id" class="form-control" id="product-band-id"></select>
+                        <select name="band_id" class="form-control" id="product-band-id">
+                            <?php foreach ($bands as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->band_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
@@ -183,8 +225,13 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-style-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Style</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="style_id"" class="form-control" id="product-style-id""
-                            placeholder="Phong cách" />
+                        <select name="style_id" class="form-control" id="product-style-id">
+                            <?php foreach ($styles as $value) { ?>
+                                <option value="{!! $value->id; !!}" {!! $data->style_id == $value->id ? 'selected' : '' !!}>
+                                    {!! $value->name; !!}
+                                </option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
 
@@ -202,7 +249,18 @@
             </div>
 
             <div class="col-xs-12 col-sm-4" style="margin-top: 10px;">
-                <label for="product-price">Giá bán lẻ và chiết khấu thương mại</label>
+                <label for="product-status">Tình trạng</label>
+
+                <div class="form-group">
+                    <select name="status" class="form-control" id="product-status">
+                        <option value="1" {!! $data->status == 1 ? 'selected' : '' !!}>Còn hàng</option>
+                        <option value="2" {!! $data->status == 2 ? 'selected' : '' !!}>Không còn hàng</option>
+                        <option value="3" {!! $data->status == 3 ? 'selected' : '' !!}>Hàng sắp về</option>
+                        <option value="4" {!! $data->status == 4 ? 'selected' : '' !!}>Chưa có thông tin về sản phẩm</option>
+                    </select>
+                </div>
+
+                <label for="product-price" style="margin-top: 25px;">Giá bán lẻ và chiết khấu thương mại</label>
 
                 <div class="form-group">
                     <div class="input-group">

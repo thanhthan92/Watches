@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Addmin_UsersTableSeeder' => $baseDir . '/database/seeds/Addmin_UsersTableSeeder.php',
+    'Admin_UsersTableSeeder' => $baseDir . '/database/seeds/Admin_UsersTableSeeder.php',
     'CreateAdminUsersTable' => $baseDir . '/database/migrations/2016_11_13_131139_create_admin_users_table.php',
     'CreateBannersTable' => $baseDir . '/database/migrations/2016_11_24_014742_create_banners_table.php',
     'CreateCategoryTable' => $baseDir . '/database/migrations/2016_11_24_011241_create_category_table.php',
@@ -495,6 +495,14 @@ return array(
     'PHP_Token_XOR_EQUAL' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
     'PHP_Token_YIELD_FROM' => $vendorDir . '/phpunit/php-token-stream/src/Token.php',
+    'Product_BandTableSeeder' => $baseDir . '/database/seeds/Product_BandTableSeeder.php',
+    'Product_BrandTableSeeder' => $baseDir . '/database/seeds/Product_BrandTableSeeder.php',
+    'Product_CaseTableSeeder' => $baseDir . '/database/seeds/Product_CaseTableSeeder.php',
+    'Product_DialTableSeeder' => $baseDir . '/database/seeds/Product_DialTableSeeder.php',
+    'Product_GenderTableSeeder' => $baseDir . '/database/seeds/Product_GenderTableSeeder.php',
+    'Product_MovementTableSeeder' => $baseDir . '/database/seeds/Product_MovementTableSeeder.php',
+    'Product_SeriesTableSeeder' => $baseDir . '/database/seeds/Product_SeriesTableSeeder.php',
+    'Product_StyleTableSeeder' => $baseDir . '/database/seeds/Product_StyleTableSeeder.php',
     'SebastianBergmann\\Comparator\\ArrayComparator' => $vendorDir . '/sebastian/comparator/src/ArrayComparator.php',
     'SebastianBergmann\\Comparator\\Comparator' => $vendorDir . '/sebastian/comparator/src/Comparator.php',
     'SebastianBergmann\\Comparator\\ComparisonFailure' => $vendorDir . '/sebastian/comparator/src/ComparisonFailure.php',

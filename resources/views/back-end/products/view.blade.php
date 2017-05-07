@@ -8,22 +8,38 @@
 			</ol>
 		</div>
 		@include('products-filters')
-		<div class="col-xs-12 col-sm-12" style="margin-top: 50px">
-			<a class="btn btn-primary" href="{!!url('admin/products/details')!!}">Thêm mới sản phẩm</a>
-
-			<table class="table table-striped" style="margin-top: 25px">
+		<div class="col-xs-12 col-sm-12" style="margin-top: 30px">
+			<div class="col-xs-12 col-sm-3 no-padding">
+				<a class="btn btn-primary" style="margin: 20px 0" href="{!!url('admin/products/details')!!}">
+					Thêm mới sản phẩm
+				</a>
+			</div>
+			<div class="col-xs-12 col-sm-9 text-right no-padding">
+				{!! $data->render() !!}
+			</div>
+			<table class="table table-striped">
 				<tr>
-					<th>Tên</th>
-					<th>Thương hiệu</th>
-					<th>Giới tính</th>
-					<th>Giá bán thị trường</th>
-					<th>Chiết khấu</th>
-					<th>Tình trạng</th>
-					<th>Cập nhật</th>
+					<th class="col-sm-5">Name</th>
+					<th>Brand</th>
+					<th>Gender</th>
+					<th>Price</th>
+					<th>Discount</th>
+					<th>Status</th>
+					<th></th>
 				</tr>
-				<?php foreach ($data as $val) { ?>
-				<?php } ?>
-
+				<tbody id="products-table">
+					<?php foreach ($data as $val) { ?>
+					<tr>
+						<td>{!! $val->name !!}</td>
+						<td>{!! $val->brand_name !!}</td>
+						<td>{!! $val->gender_name !!}</td>
+						<td>{!! $val->price !!}</td>
+						<td>{!! $val->discount !!}</td>
+						<td>{!! $val->status !!}</td>
+						<td>Chỉnh sửa | Xóa</td>
+					</tr>
+					<?php } ?>
+				</tbody>
 			</table>
 		</div>
 	</div>
