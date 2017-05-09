@@ -279,11 +279,20 @@
                 </div>
 
                 <label style="margin-top: 25px;">Hình ảnh của sản phẩm</label>
+                <div class="clearfix"></div>
 
-                <input type="file" class="form-control" name="images[]" accept="image/*" />
                 <label style="cursor: pointer; line-height: 34px; margin-top: 15px; font-weight: normal" onclick="addmore(this)">
                     <span class="glyphicon glyphicon-plus"></span> Thêm hình ảnh
                 </label>
+                <div class="clearfix"></div>
+
+                <img src="{{asset('/images/icon-add-img.png')}}" onclick="selectImages(this)" data-idx="0"
+                    class="col-xs-6 col-sm-4" style="margin-top: 15px" />
+                <div class="clearfix" id="finish-images"></div>
+
+                <input type="file" class="form-control" name="images[]" accept="image/*" style="display:none;" />
+                <div class="clearfix" id="finish-inputs"></div>
+
             </div>
 
             <div class="form-group col-xs-12 col-sm-12" style="margin-top: 15px">
@@ -313,11 +322,24 @@
             obj.className = "active";
         }
 
+        function selectImages(el) {
+            var inputs = document.querySelectorAll('input[type=file]');
+            var idx = el.getAttribute('data-idx');
+            inputs[idx].click();
+        }
+
         function addmore(el) {
-            var node = createElement('input', {
-                'type': 'file', 'class': 'form-control', 'name': 'images[]', 'accept': 'image/*', 'style': 'margin-top: 15px' 
+            var input = createElement('input', {
+                'type': 'file', 'name': 'images[]', 'accept': 'image/*',
+                'style': 'margin-top: 15px; display: none', 'class': 'form-control'
             });
-            el.parentElement.insertBefore(node, el);
+            el.parentElement.insertBefore(input, document.getElementById('finish-inputs'));
+
+            var image = createElement('img', {
+                'src': "{{asset('/images/icon-add-img.png')}}", 'data-idx' : '1', 'onclick': 'selectImages(this)',
+                'class': 'col-xs-6 col-sm-4', 'style': 'margin-top: 15px'
+            });
+            el.parentElement.insertBefore(image, document.getElementById('finish-images'));
         }
 
         function createElement(element, attribute) { 
