@@ -70,7 +70,8 @@ class ProductsController extends Controller
             'dial_id', 'dial_color',
             'band_id', 'band_length', 'band_width', 'band_clasp',
             'style_id',
-            'feature_water_resstance', 'feature', 'functions', 'upc_code');
+            'feature_water_resstance', 'feature', 'functions', 'upc_code'
+        );
 
         foreach ($attr as $value) {
             if ($value == 'slug')
@@ -80,7 +81,9 @@ class ProductsController extends Controller
             }
             $data->{$value} = $rq->{$value};
         }
-        $data->images = "";
+
+        $data->images = time() . '-' . $rq->file('images')[0]->getClientOriginalName();
+
         try {
             $data->save();
         }

@@ -278,19 +278,14 @@
                     </div>
                 </div>
 
-                <label style="margin-top: 25px;">Hình ảnh của sản phẩm</label>
+                <label style="margin-top: 25px; margin-bottom: 10px">Hình ảnh của sản phẩm</label>
                 <div class="clearfix"></div>
 
-                <label style="cursor: pointer; line-height: 34px; margin-top: 15px; font-weight: normal" onclick="addmore(this)">
+                <label class="form-group col-xs-12 col-sm-12" style="cursor: pointer; font-weight: normal"
+                    onclick="addmore(this)">
                     <span class="glyphicon glyphicon-plus"></span> Thêm hình ảnh
                 </label>
-                <div class="clearfix"></div>
-
-                <img src="{{asset('/images/icon-add-img.png')}}" onclick="selectImages(this)" data-idx="0"
-                    class="col-xs-6 col-sm-4" style="margin-top: 15px" />
                 <div class="clearfix" id="finish-images"></div>
-
-                <input type="file" class="form-control" name="images[]" accept="image/*" style="display:none;" />
                 <div class="clearfix" id="finish-inputs"></div>
 
             </div>
@@ -322,37 +317,81 @@
             obj.className = "active";
         }
 
-        function selectImages(el) {
-            var inputs = document.querySelectorAll('input[type=file]');
-            var idx = el.getAttribute('data-idx');
-            inputs[idx].click();
-        }
-
         function addmore(el) {
-            var input = createElement('input', {
-                'type': 'file', 'name': 'images[]', 'accept': 'image/*',
-                'style': 'margin-top: 15px; display: none', 'class': 'form-control'
+            var id = Date.now();
+            var input = create('input', {
+                'type': 'file', 'accept': 'image/*',
+                'style': 'display: none',
+                'name': 'images[]',
+                'id': id,
+                'onchange': 'showImage(this)'
             });
             el.parentElement.insertBefore(input, document.getElementById('finish-inputs'));
-
-            var image = createElement('img', {
-                'src': "{{asset('/images/icon-add-img.png')}}", 'data-idx' : '1', 'onclick': 'selectImages(this)',
-                'class': 'col-xs-6 col-sm-4', 'style': 'margin-top: 15px'
-            });
-            el.parentElement.insertBefore(image, document.getElementById('finish-images'));
+            input.click();
         }
 
-        function createElement(element, attribute) { 
-            if(typeof(element) === "undefined") {
+        function showImage(el) {
+            if (!(el.files && el.files[0])) {
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var exist = document.getElementById('image-' + el.getAttribute('id'));
+                if (exist != undefined) {
+                    exist.setAttribute('src', e.target.result);
+                    return;
+                }
+
+                var image = create('img', {
+                    'class': 'col-xs-10 col-sm-5',
+                    'style': 'margin-bottom: 30px',
+                    'id': 'image-' + el.getAttribute('id'),
+                    'src': e.target.result
+                });
+                el.parentElement.insertBefore(image, document.getElementById('finish-images'));
+
+                var actor = create('div', {
+                    'class': 'col-xs-2 col-sm-1 no-padding'
+                });
+
+                var html = "<div class='glyphicon glyphicon-pencil' onclick='editImage(" +
+                    el.getAttribute('id') + ")'></div>";
+                html += "<div class='glyphicon glyphicon-trash' onclick='deleteImage(" +
+                    el.getAttribute('id') + ")'></div>";
+                actor.innerHTML = html;
+
+                el.parentElement.insertBefore(actor, document.getElementById('finish-images'));
+            }
+
+            reader.readAsDataURL(el.files[0]);
+        }
+
+        function editImage(id) {
+            if (document.getElementById(id) != undefined)
+                document.getElementById(id).click();
+        }
+
+        function deleteImage(id) {
+            if (document.getElementById('image-' + id) != undefined) {
+                document.getElementById('image-' + id).nextSibling.remove();
+                document.getElementById('image-' + id).remove();
+            }
+            if (document.getElementById(id) != undefined)
+                document.getElementById(id).remove();
+        }
+
+        function create(name, attr) {
+            if(typeof(name) === "undefined") {
                 return false;
             }
-            var el = document.createElement(element);
-            if(typeof(attribute) === 'object') {
-                for(var key in attribute) {
-                    el.setAttribute(key,attribute[key]);
+            var element = document.createElement(name);
+            if(typeof(attr) === 'object') {
+                for(var key in attr) {
+                    element.setAttribute(key,attr[key]);
                 }
             }
-            return el;
+            return element;
         }
     </script>
 @endsection
