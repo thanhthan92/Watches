@@ -285,6 +285,22 @@
                     onclick="addmore(this)">
                     <span class="glyphicon glyphicon-plus"></span> Thêm hình ảnh
                 </label>
+
+                <?php
+                    $list = unserialize($data->images);
+                    if ($list == false) {
+                        $list = array();
+                    }
+                ?>
+
+                <?php foreach ($list as $i => $value) { ?>
+                    <img class="col-xs-10 col-sm-5" style="margin-bottom: 30px"
+                        id="{!! 'image-' . $i !!}" src="{!!url('uploads/products/details/' . $value)!!}" />
+                    <div class="col-xs-2 col-sm-1 no-padding">
+                        <div class="glyphicon glyphicon-pencil" onclick="editImage({!! $i !!})"></div>
+                        <div class="glyphicon glyphicon-trash" onclick="deleteImage({!! $i !!})"></div>
+                    </div>
+                <?php } ?>
                 <div class="clearfix" id="finish-images"></div>
                 <div class="clearfix" id="finish-inputs"></div>
 
@@ -317,8 +333,11 @@
             obj.className = "active";
         }
 
-        function addmore(el) {
-            var id = Date.now();
+        function addmore(el, id = null) {
+            if (id == null) {
+                id = Date.now();
+            }
+
             var input = create('input', {
                 'type': 'file', 'accept': 'image/*',
                 'style': 'display: none',
@@ -368,13 +387,19 @@
         }
 
         function editImage(id) {
-            if (document.getElementById(id) != undefined)
+            if (document.getElementById(id) != undefined) {
                 document.getElementById(id).click();
+            } else {
+                addmore(document.getElementById('finish-inputs'), id);
+            }
         }
 
         function deleteImage(id) {
             if (document.getElementById('image-' + id) != undefined) {
                 document.getElementById('image-' + id).nextSibling.remove();
+                if ( document.getElementById('image-' + id).nextSibling.tagName == 'DIV') {
+                    document.getElementById('image-' + id).nextSibling.remove();
+                }
                 document.getElementById('image-' + id).remove();
             }
             if (document.getElementById(id) != undefined)

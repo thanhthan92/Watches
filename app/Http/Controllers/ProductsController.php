@@ -29,8 +29,7 @@ class ProductsController extends Controller
         if ($id) {
             $data = Products::find($id);
 
-            if (!$data)
-            {
+            if (!$data) {
                 return redirect()->action('ProductsController@getdetails', ['id' => null]);
             }
         }
@@ -81,8 +80,19 @@ class ProductsController extends Controller
             }
             $data->{$value} = $rq->{$value};
         }
+        $images = array();
+        if ($rq->hasFile('images')) {
+            $list = $rq->file('images');
+            foreach ($list as $row) {
+                if (isset($row)) {
+                    $name = time() . '-' . $row->getClientOriginalName();
+                    array_push($images, $name);
+                    $row->move('uploads/products/details/', $name);
+                }
+            }
+        }
 
-        $data->images = time() . '-' . $rq->file('images')[0]->getClientOriginalName();
+        $data->images = serialize($images);
 
         try {
             $data->save();
