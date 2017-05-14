@@ -29,8 +29,7 @@ class ProductsController extends Controller
         if ($id) {
             $data = Products::find($id);
 
-            if (!$data)
-            {
+            if (!$data) {
                 return redirect()->action('ProductsController@getdetails', ['id' => null]);
             }
         }
@@ -70,7 +69,8 @@ class ProductsController extends Controller
             'dial_id', 'dial_color',
             'band_id', 'band_length', 'band_width', 'band_clasp',
             'style_id',
-            'feature_water_resstance', 'feature', 'functions', 'upc_code');
+            'feature_water_resstance', 'feature', 'functions', 'upc_code'
+        );
 
         foreach ($attr as $value) {
             if ($value == 'slug')
@@ -80,7 +80,20 @@ class ProductsController extends Controller
             }
             $data->{$value} = $rq->{$value};
         }
-        $data->images = "";
+        $images = array();
+        if ($rq->hasFile('images')) {
+            $list = $rq->file('images');
+            foreach ($list as $row) {
+                if (isset($row)) {
+                    $name = time() . '-' . $row->getClientOriginalName();
+                    array_push($images, $name);
+                    $row->move('uploads/products/details/', $name);
+                }
+            }
+        }
+
+        $data->images = serialize($images);
+
         try {
             $data->save();
         }
