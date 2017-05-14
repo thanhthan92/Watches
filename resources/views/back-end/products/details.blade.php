@@ -40,7 +40,7 @@
                 </div>
                 
                 <div class="form-group col-xs-12 col-sm-12 row">
-                    <label for="product-brand-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Brand</label>
+                    <label for="product-brand-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Thương hiệu</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
                         <select name="brand_id" class="form-control" id="product-brand-id">
                             <?php foreach ($brands as $value) { ?>
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="form-group col-xs-12 col-sm-12 row">
-                    <label for="product-gender-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Gender</label>
+                    <label for="product-gender-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Dành cho</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
                         <select name="gender_id" class="form-control" id="product-gender-id">
                             <?php foreach ($genders as $value) { ?>
@@ -306,7 +306,7 @@
                 <button type="submit" class="btn btn-primary">{!! $breadcrumb; !!}</button>
             </div>
         </form>
-    </div>
+    </div>s
     <script type="text/javascript">
         var obj = document.getElementById('products');
         if (obj != null && obj != undefined) {

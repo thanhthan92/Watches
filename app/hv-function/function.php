@@ -38,4 +38,79 @@
 			}
 		}		
 	}
+
+	function listBrands($data, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		if(isset($data['brands']))
+		{
+			addDataToTable($data['brands'], $nameModel, $placeholderDisplay, $namebtnSave);
+		}
+	}
+
+	function listSeries($data, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		if(isset($data['series']))
+		{	
+			addDataToTable($data['series'], $nameModel, $placeholderDisplay, $namebtnSave);
+		}	
+	}
+
+	function listMovement($data, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		if(isset($data['movements']))
+		{	
+			addDataToTable($data['movements'], $nameModel, $placeholderDisplay, $namebtnSave);
+		}	
+	}
+
+	function listCase($data, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		if(isset($data['cases']))
+		{	
+			addDataToTable($data['cases'], $nameModel, $placeholderDisplay, $namebtnSave);
+		}	
+	}
+
+	function listDial($data, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		if(isset($data['dials']))
+		{	
+			addDataToTable($data['dials'], $nameModel, $placeholderDisplay, $namebtnSave);
+		}	
+	}
+
+	function listBand($data, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		if(isset($data['bands']))
+		{	
+			addDataToTable($data['bands'], $nameModel, $placeholderDisplay, $namebtnSave);
+		}	
+	}
+
+	function listStyles($data, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		if(isset($data['styles']))
+		{	
+			addDataToTable($data['styles'], $nameModel, $placeholderDisplay, $namebtnSave);
+		}	
+	}
+
+	function addDataToTable($dataChild, $nameModel, $placeholderDisplay, $namebtnSave)
+	{	
+		
+		foreach($dataChild as $val) {
+			if(isset($val["name"]) && !empty($val["name"]))
+			{
+				$id  = $val["id"];
+				$ten = $val["name"];
+				echo '<tr>';
+				echo '<td ><strong style="color:blue;">' . $ten . '</strong></td>';
+				echo '<td class="list_td aligncenter">
+			            <a href="javascript:void(0)" onclick="edit('.$id.', this, \''.$nameModel.'\', \''.$placeholderDisplay.'\', \''.$namebtnSave.'\')" title="Sửa" onclick=""><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;
+			            <a href="javascript:void(0)" onclick="deleteData('.$id.', this, \''.$nameModel.'\')" title="Xóa" onclick="return xacnhan(\'Xóa danh mục này ?\') "> <span class="glyphicon glyphicon-remove"></span> </a>
+		      		  </td>    
+			    	</tr>';
+			}
+		}
+	}
 ?>

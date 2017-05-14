@@ -1,5 +1,3 @@
-
-	<script src="{!!url('/back-end/js/jquery-1.11.1.min.js')!!}"></script>
 	<script src="{!!url('/back-end/js/bootstrap.min.js')!!}"></script>
 	<script src="{!!url('/back-end/js/chart.min.js')!!}"></script>
 	<script src="{!!url('/back-end/js/chart-data.js')!!}"></script>

@@ -38,11 +38,14 @@ Route::group(['middleware' => 'admin'], function () {
        });
        // -------------------- quan ly danh muc----------------------
        	Route::group(['prefix' => 'danhmuc'], function() {
-           Route::get('add',['as'        =>'getaddcat','uses' => 'CategoryController@getadd']);
-           Route::post('add',['as'       =>'postaddcat','uses' => 'CategoryController@postadd']);
+          Route::post('addBrand',['as'        =>'addBrand','uses' => 'CategoryController@addBrand']);
+          Route::get('add',      ['as'        =>'getaddcat','uses' => 'CategoryController@getadd']);
+          Route::post('add',     ['as'        =>'postaddcat','uses' => 'CategoryController@postadd']);
+
 
            Route::get('/',['as'       =>'getcat','uses' => 'CategoryController@getlist']);
            Route::get('del/{id}',['as'   =>'getdellcat','uses' => 'CategoryController@getdel'])->where('id','[0-9]+');
+           Route::post('del',['as'   =>'deleteBrand','uses' => 'CategoryController@deleteBrand']);
            
            Route::get('edit/{id}',['as'  =>'geteditcat','uses' => 'CategoryController@getedit'])->where('id','[0-9]+');
            Route::post('edit/{id}',['as' =>'posteditcat','uses' => 'CategoryController@postedit'])->where('id','[0-9]+');
