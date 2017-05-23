@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('/images/logo.png')}}" alt="logo" width="50" height="20">
 
-    <title>Fshop : Hệ thông bán hàng trực tuyến SCODEWEB</title>
+    <title>Demo</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}" />
@@ -63,4 +63,6 @@
     {{-- <script>
         document.write("<script type='text/javascript' language='javascript'> MainContentW = 1150;LeftBannerW = 150;RightBannerW = 150;LeftAdjust = 35;RightAdjust = 0;TopAdjust = 5;ShowAdDiv();window.onresize=ShowAdDiv;;<\/script>");
     </script> --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
   </head>

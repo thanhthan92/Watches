@@ -15,6 +15,7 @@
 			}			
 		}
 	}
+	
 	function listcate ($data,$parent_id =0,$str="")
 	{
 		foreach ($data as $val) {
@@ -112,5 +113,41 @@
 			    	</tr>';
 			}
 		}
+	}
+
+?>
+
+<?php
+	function create1productitem($data) {
+		$images = unserialize($data->images);
+		if(empty($images)) {return;}
+		$url = url('/chi-tiet/' . $data->slug . '-' . $data->id . '.html');
+
+		$html  = '<li class="col-xs-6 col-sm-6 col-md-3" style="margin-bottom: 50px">';
+    	$html .= '<div class="productImg">';
+        $html .= '<a href="' . $url . '" title="' . $data->name . '" class="product-image">';
+        $html .= '<img src="' . url('uploads/products/details/' . $images[0]) . '">';
+        $html .= '</a>';
+	    $html .= '<h2 class="product-name">';
+	    $html .= '<a href="' . $url . '" title="' . $data->name . '"><strong></strong><span>' . $data->name . '</span></a>';
+	    $html .= '</h2>';
+	    $html .= '<div class="price-box">';
+
+	    if (!$data->discount) {
+	    	$data->discount = 0;
+	    }
+    	$html .= '<span class="regular-price">';
+    	$html .= '<span id="product-price-1" class="price">' . number_format($data->price * (100 - $data->discount) / 100, 0, ',', '.') . ' VNĐ</span>';
+    	$html .= '</span>';
+	    if ($data->discount) {
+		    $html .= '<span class="old_price">' . number_format($data->price, 0, ',', '.') . ' VNĐ</span>';
+		    $html .= '<span class="save">';
+		    $html .= '<span class="savePr">Tiết kiệm ' . number_format($data->price * $data->discount / 100, 0, ',', '.') . 'VNĐ (' . $data->discount . '%)</span>';
+		    $html .= '</span>';
+		}
+	    $html .= '</div>';
+		$html .= '</li>';
+
+		echo $html;
 	}
 ?>

@@ -3,6 +3,10 @@
 Route::auth();
 Route::get('/user', 'HomeController@index');
 Route::get('/user/edit', 'HomeController@edit');
+Route::get('/dong-ho-{gender}/{slug}.html', ['as'  => 'getgetProductByGender', 'uses' =>'PagesController@getProductByGender']);
+Route::get('/dong-ho/{slug}.html', ['as'  => 'getproductByBrands', 'uses' =>'PagesController@productByBrands']);
+Route::get('/{param}.html', ['as'  => 'getproductsByParam', 'uses' =>'PagesController@productsByParam']);
+Route::get('/chi-tiet/{slug}.html', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
 
 // admin route 
 Route::get('admin/login', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@showLoginForm']);
