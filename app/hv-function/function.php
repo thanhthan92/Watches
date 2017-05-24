@@ -120,7 +120,10 @@
 <?php
 	function create1productitem($data) {
 		$images = unserialize($data->images);
-		if(empty($images)) {return;}
+		if(empty($images)) {
+			return;
+		}
+		
 		$url = url('/chi-tiet/' . $data->slug . '-' . $data->id . '.html');
 
 		$html  = '<li class="col-xs-6 col-sm-6 col-md-3" style="margin-bottom: 50px">';

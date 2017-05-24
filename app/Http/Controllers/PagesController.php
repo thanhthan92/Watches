@@ -291,6 +291,7 @@ class PagesController extends Controller
         $data = null;
         $data = DB::table($nameTable)
                 ->join($nameTableJoin, $tableId, '=', $tableJoinId)
+                ->select($nameTable . '.*')
                 ->get();
         return $data; 
     }

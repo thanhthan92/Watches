@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 ">© 2017 Than_Tai.&nbsp;&nbsp;&nbsp;All rights reserved.</div>
+        <div class="col-xs-12 col-sm-12 col-md-12 ">© 2017 Team Thân và những người bạn.&nbsp;&nbsp;&nbsp;All rights reserved.</div>
     </footer>
     <a id="back-to-top" href="#" class="btn btn-warning btn-lg back-to-top" role="button" title="Click lên đâu trang" data-toggle="tooltip" data-placement="left"><span class="glyphicon glyphicon-chevron-up"></span></a>
     <!-- Bootstrap core JavaScript

@@ -16,17 +16,16 @@ Route::get('admin/password/reset', ['as'  => 'getreser', 'uses' =>'Admin\AuthCon
 Route::get('admin/logout', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@logout']);
 
 Route::get('/', ['as'  => 'index', 'uses' =>'PagesController@index']);
-// cart - oder
-Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
-// them vao gio hang
-Route::get('gio-hang/addcart/{id}', ['as'  => 'getcartadd', 'uses' =>'PagesController@addcart']);
-Route::get('gio-hang/update/{id}/{qty}-{dk}', ['as'  => 'getupdatecart', 'uses' =>'PagesController@getupdatecart']);
-Route::get('gio-hang/delete/{id}', ['as'  => 'getdeletecart', 'uses' =>'PagesController@getdeletecart']);
-Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']);
 
-// tien hanh dat hang
-Route::get('dat-hang', ['as'  => 'getoder', 'uses' =>'PagesController@getoder']);
-Route::post('dat-hang', ['as'  => 'postoder', 'uses' =>'PagesController@postoder']);
+// shopping cart
+Route::get(  '/gio-hang',					['as'  => 'getoldcart',			'uses' =>'CartController@getoldcart']);
+Route::get(  '/shopping-cart',				['as'  => 'getcart',			'uses' =>'CartController@getcart']);
+Route::get(  '/shopping-cart/add/{id}',		['as'  => 'getaddcart',			'uses' =>'CartController@getaddcart']);
+Route::get(  '/shopping-cart/delete/{id}',	['as'  => 'getdeletecart',		'uses' =>'CartController@getdeletecart']);
+Route::post( '/shopping-cart/update',		['as'  => 'postupdatecart',		'uses' =>'CartController@postupdatecart']);
+Route::get(  '/shopping-cart/checkout',		['as'  => 'getcheckoutcart',	'uses' =>'CartController@getcheckoutcart']);
+Route::post( '/shopping-cart/checkout',		['as'  => 'postcheckoutcart',	'uses' =>'CartController@postcheckoutcart']);
+
 // category
 Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
 Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);

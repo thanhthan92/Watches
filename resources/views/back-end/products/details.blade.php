@@ -35,12 +35,12 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-model" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Mã SP (model)</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="model" class="form-control" id="product-model" placeholder="Mã SP (model)" />
+                        <input type="text" name="model" class="form-control" id="product-model" placeholder="Mã SP (model)" value="{!! $data->model !!}" />
                     </div>
                 </div>
                 
                 <div class="form-group col-xs-12 col-sm-12 row">
-                    <label for="product-brand-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Thương hiệu</label>
+                    <label for="product-brand-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Brand</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
                         <select name="brand_id" class="form-control" id="product-brand-id">
                             <?php foreach ($brands as $value) { ?>
@@ -53,14 +53,11 @@
                 </div>
 
                 <div class="form-group col-xs-12 col-sm-12 row">
-                    <label for="product-gender-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Dành cho</label>
+                    <label for="product-gender-id" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Kiểu dáng</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
                         <select name="gender_id" class="form-control" id="product-gender-id">
-                            <?php foreach ($genders as $value) { ?>
-                                <option value="{!! $value->id; !!}" {!! $data->gender_id == $value->id ? 'selected' : '' !!}>
-                                    {!! $value->name; !!}
-                                </option>
-                            <?php } ?>
+                            <option value="1" {!! $data->gender_id == 1 ? 'selected' : '' !!}>Nam</option>
+                            <option value="2" {!! $data->gender_id == 2 ? 'selected' : '' !!}>Nữ</option>
                         </select>
                     </div>
                 </div>
@@ -111,7 +108,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-case-shape" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Hình dạng</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="case_shape" class="form-control" id="product-case-shape"
+                        <input type="text" name="case_shape" class="form-control" id="product-case-shape" value="{!! $data->case_shape !!}"
                             placeholder="Hình tròn, hình vuông..." />
                     </div>
                 </div>
@@ -119,7 +116,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-case-size" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Kích thước (mm)</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="case_size" class="form-control" id="product-case-size"
+                        <input type="text" name="case_size" class="form-control" id="product-case-size" value="{!! $data->case_size !!}"
                             placeholder="Kích thước (mm)" />
                     </div>
                 </div>
@@ -144,7 +141,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-dial-color" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Màu sắc</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="dial_color" class="form-control" id="product-dial-color"
+                        <input type="text" name="dial_color" class="form-control" id="product-dial-color" value="{!! $data->dial_color !!}"
                             placeholder="Màu sắc" />
                     </div>
                 </div>
@@ -169,7 +166,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-band-length" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Chiều dài dây</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="band_length" class="form-control" id="product-band-length"
+                        <input type="text" name="band_length" class="form-control" id="product-band-length" value="{!! $data->band_length !!}"
                             placeholder="Chiều dài dây" />
                     </div>
                 </div>
@@ -177,7 +174,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-band-width" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Độ rộng</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="band_width" class="form-control" id="product-band-width"
+                        <input type="text" name="band_width" class="form-control" id="product-band-width" value="{!! $data->band_width !!}"
                             placeholder="Độ rộng" />
                     </div>
                 </div>
@@ -185,7 +182,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-band-clasp" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Khóa</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="band_clasp" class="form-control" id="product-band-clasp"
+                        <input type="text" name="band_clasp" class="form-control" id="product-band-clasp" value="{!! $data->band_clasp !!}"
                             placeholder="Khóa đồng hồ" />
                     </div>
                 </div>
@@ -197,7 +194,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-feature-water-resstance" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Khả năng chống nước</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="feature_water_resstance" class="form-control" id="product-feature-water-resstance"
+                        <input type="text" name="feature_water_resstance" class="form-control" id="product-feature-water-resstance" value="{!! $data->feature_water_resstance !!}"
                             placeholder="Chống nước (mét)" />
                     </div>
                 </div>
@@ -205,7 +202,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-feature" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Chức năng</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="feature" class="form-control" id="product-feature"
+                        <input type="text" name="feature" class="form-control" id="product-feature" value="{!! $data->feature !!}"
                             placeholder="Lịch..." />
                     </div>
                 </div>
@@ -213,7 +210,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-functions" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Tính năng riêng</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="functions" class="form-control" id="product-functions"
+                        <input type="text" name="functions" class="form-control" id="product-functions"  value="{!! $data->functions !!}"
                             placeholder="Chức năng bấm giờ..." />
                     </div>
                 </div>
@@ -238,7 +235,7 @@
                 <div class="form-group col-xs-12 col-sm-12 row">
                     <label for="product-upc-code" class="col-xs-6 col-sm-6 no-padding" style="line-height: 34px; font-weight: normal">Mã xuất xứ (UPC code)</label>
                     <div class="col-xs-12 col-sm-6 no-padding">
-                        <input type="text" name="upc_code" class="form-control" id="product-upc-code"
+                        <input type="text" name="upc_code" class="form-control" id="product-upc-code" value="{!! $data->upc_code !!}"
                             placeholder="Mã xuất xứ" />
                     </div>
                 </div>
@@ -264,9 +261,17 @@
 
                 <div class="form-group">
                     <div class="input-group">
-                        <span class="input-group-addon">Giá bán (VNĐ)</span>
-                        <input type="number" name="price" id="product-price" value="{!! $data->price; !!}"
+                        <span class="input-group-addon">Số lượng</span>
+                        <input type="number" name="quantity" id="product-quantity" value="{!! $data->quantity; !!}"
                             class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Giá bán (VNĐ)</span>
+                        <input type="text" name="price" id="product-price" value="{!! number_format($data->price, 0, ',', '.') !!}"
+                            class="form-control" onkeyup="currency(this)" maxlength="15" />
                     </div>
                 </div>
 
@@ -294,10 +299,11 @@
                 ?>
 
                 <?php foreach ($list as $i => $value) { ?>
-                    <img class="col-xs-10 col-sm-5" style="margin-bottom: 30px"
-                        id="{!! 'image-' . $i !!}" src="{!!url('uploads/products/details/' . $value)!!}" />
+                    <img class="col-xs-10 col-sm-5" data-index="{!! $i !!}" id="{!! 'image-' . $i !!}"
+                        src="{!!url('uploads/products/details/' . $value)!!}" style="margin-bottom: 30px" />
                     <div class="col-xs-2 col-sm-1 no-padding">
                         <div class="glyphicon glyphicon-pencil" onclick="editImage({!! $i !!})"></div>
+                        <div class="clearfix"></div>
                         <div class="glyphicon glyphicon-trash" onclick="deleteImage({!! $i !!})"></div>
                     </div>
                 <?php } ?>
@@ -308,25 +314,14 @@
 
             <div class="form-group col-xs-12 col-sm-12" style="margin-top: 15px">
                 <label for="product-detail">Giới thiệu</label>
-                <textarea name="detail" id="product-detail" class="form-control" rows="5">
-                {!! old('detail', $data->detail) !!}
-                </textarea>
-                <script type="text/javascript">
-                    var editor = CKEDITOR.replace('detail',{
-                        language:'en',
-                        filebrowserImageBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Images',
-                        filebrowserFlashBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Flash',
-                        filebrowserImageUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                        filebrowserFlashUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-                    });
-                </script>
+                <textarea name="detail" id="product-detail" class="form-control" rows="5" style="resize: none">{!! $data->detail !!}</textarea>
             </div>
 
             <div class="form-group col-xs-12 col-sm-12">
                 <button type="submit" class="btn btn-primary">{!! $breadcrumb; !!}</button>
             </div>
         </form>
-    </div>s
+    </div>
     <script type="text/javascript">
         var obj = document.getElementById('products');
         if (obj != null && obj != undefined) {
@@ -356,9 +351,21 @@
 
             var reader = new FileReader();
             reader.onload = function (e) {
-                var exist = document.getElementById('image-' + el.getAttribute('id'));
+                var id = el.getAttribute('id');
+
+                var exist = document.getElementById('image-' + id);
                 if (exist != undefined) {
                     exist.setAttribute('src', e.target.result);
+                    if ('{!! $data->id !!}') {
+                        if (document.getElementById('image-index-' + id) == undefined) {
+                            var hidden = create('input', {
+                                'type': 'hidden',
+                                'id': 'image-index-' + id, 'name': 'update[]',
+                                'value': id
+                            });
+                            el.parentElement.insertBefore(hidden, document.getElementById('finish-inputs'));
+                        }
+                    }
                     return;
                 }
 
@@ -374,10 +381,9 @@
                     'class': 'col-xs-2 col-sm-1 no-padding'
                 });
 
-                var html = "<div class='glyphicon glyphicon-pencil' onclick='editImage(" +
-                    el.getAttribute('id') + ")'></div>";
-                html += "<div class='glyphicon glyphicon-trash' onclick='deleteImage(" +
-                    el.getAttribute('id') + ")'></div>";
+                var html = "<div class='glyphicon glyphicon-pencil' onclick='editImage(" + id + ")'></div>";
+                html += "<div class=\"clearfix\"></div>";
+                html += "<div class='glyphicon glyphicon-trash' onclick='deleteImage(" + id + ")'></div>";
                 actor.innerHTML = html;
 
                 el.parentElement.insertBefore(actor, document.getElementById('finish-images'));
@@ -395,15 +401,31 @@
         }
 
         function deleteImage(id) {
-            if (document.getElementById('image-' + id) != undefined) {
-                document.getElementById('image-' + id).nextSibling.remove();
-                if ( document.getElementById('image-' + id).nextSibling.tagName == 'DIV') {
-                    document.getElementById('image-' + id).nextSibling.remove();
+            var el = document.getElementById('image-' + id);
+            if (el != undefined) {
+                el.nextSibling.remove();
+                if (el.nextSibling.tagName == 'DIV') {
+                    el.nextSibling.remove();
                 }
-                document.getElementById('image-' + id).remove();
+                el.remove();
             }
-            if (document.getElementById(id) != undefined)
-                document.getElementById(id).remove();
+
+            el = document.getElementById(id);
+            if (el != undefined) {
+                el.remove();
+            }
+
+            el = document.getElementById('image-index-' + id);
+            if (el != undefined) {
+                el.setAttribute('name', 'delete[]');
+            } else if ('{!! $data->id !!}') {
+                var hidden = create('input', {
+                    'type': 'hidden',
+                    'id': 'image-index-' + id, 'name': 'delete[]', 'value': id
+                });
+                document.getElementById('finish-inputs')
+                    .parentElement.insertBefore(hidden, document.getElementById('finish-inputs'));
+            }
         }
 
         function create(name, attr) {
@@ -417,6 +439,10 @@
                 }
             }
             return element;
+        }
+
+        function currency(el) {
+            el.value = el.value.replace(/\D/g,'').replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
         }
     </script>
 @endsection

@@ -16,8 +16,7 @@ class ProductsController extends Controller
     {
         $data = DB::table('products')
             ->join('product_brand', 'products.brand_id', '=', 'product_brand.id')
-            ->join('product_gender', 'products.gender_id', '=', 'product_gender.id')
-            ->select('products.*', 'product_brand.name as brand_name', 'product_gender.name as gender_name')
+            ->select('products.*', 'product_brand.name as brand_name')
             ->paginate(15);
         return view('back-end.products.view',['data' => $data]);
     }

@@ -29,6 +29,7 @@ $(document).ready(function(){
     $(window).scroll(function () {
         if ($(this).scrollTop() > 50) {
             $('#back-to-top').fadeIn();
+            $('#back-to-top').tooltip('show');
         } else {
             $('#back-to-top').fadeOut();
         }
@@ -41,8 +42,6 @@ $(document).ready(function(){
         }, 800);
         return false;
     });
-    
-    $('#back-to-top').tooltip('show');
 
 });
 $(document).ready(function() {

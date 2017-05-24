@@ -162,7 +162,7 @@
 						@endif
 					</div>
 					<div class="add-to-box">
-						<form method="GET" action="/shopping-cart/add/{!! $products->id !!}.html">
+						<form method="GET" action="/shopping-cart/add/{!! $products->id !!}">
 						<p class="availability-in-stock text-uppercase text-center">In stock ready to ship</p>
 						<label>Số lượng</label>&nbsp;
 						<input name="quantity" type="text" maxlength="12" value="1" class="form-control" />
