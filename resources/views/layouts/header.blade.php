@@ -1,3 +1,11 @@
+<?php
+    $title = '';
+    $website_name = DB::table('website_metadata')->where('key', 'website_name')->value('value');
+    if (!empty($website_name)) {
+        $title = $website_name;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +16,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('/images/logo.png')}}" alt="logo" width="50" height="20">
 
-    <title>Demo</title>
+    <title>{!! $title; !!}</title>
 
     <link rel="stylesheet" href="{{ asset('/bootstrap/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">

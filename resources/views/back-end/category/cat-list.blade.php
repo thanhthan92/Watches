@@ -1,5 +1,16 @@
 @extends('back-end.layouts.master')
 @section('content')
+
+<script type="text/javascript">
+    var obj = document.getElementById('danhmuc');
+    if (obj != null && obj != undefined) {
+        obj.className = "active";
+    }
+</script>
+<style scoped>
+	.panel-group a {text-decoration:none;font-weight:bold}
+</style>
+
 <!-- main content - noi dung chinh trong chu -->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">

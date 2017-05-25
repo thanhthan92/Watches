@@ -19,7 +19,19 @@
             <div class="form-group col-xs-12 col-sm-12">
                 <label for="website-name">Tên của website</label>
                 <input type="text" name="website_name" id="website-name" value="{!! $data['website_name'] !!}" 
-                    class="form-control" placeholder="Tiêu đề của webiste" />
+                    class="form-control" placeholder="Tiêu đề của website" />
+            </div>
+
+            <div class="form-group col-xs-12 col-sm-12">
+                <label for="website-phone">Số điện thoại liên lạc</label>
+                <input type="text" name="website_phone" id="website-phone" value="{!! $data['website_phone'] !!}" 
+                    class="form-control" placeholder="Số điện thoại" />
+            </div>
+
+            <div class="form-group col-xs-12 col-sm-12">
+                <label for="website-email">Email</label>
+                <input type="text" name="website_email" id="website-email" value="{!! $data['website_email'] !!}" 
+                    class="form-control" placeholder="Email" />
             </div>
 
             <div class="form-group"  style="margin-top: 15px" id ="website-transaction">

@@ -4,6 +4,15 @@
     $data = new \stdClass();
     $data->total = 0;
 ?>
+
+<script type="text/javascript">
+    var tmp = '';
+    if (document.title != '') {
+        tmp += " | " + document.title;
+    } 
+    document.title = "Giỏ hàng" + tmp;
+</script>
+
 <style scoped>
     .cart-totals-wrapper{width:100%}
     .product-name{font-family:sans-serif;font-size:14px;font-weight:bold;line-height:27px}
