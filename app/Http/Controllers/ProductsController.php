@@ -35,7 +35,6 @@ class ProductsController extends Controller
 
         $brands = DB::table('product_brand')->get();
         $series = DB::table('product_series')->get();
-        $genders = DB::table('product_gender')->get();
         $movements = DB::table('product_movement')->get();
         $cases = DB::table('product_case')->get();
         $dials = DB::table('product_dial')->get();
@@ -43,7 +42,7 @@ class ProductsController extends Controller
         $styles = DB::table('product_style')->get();
 
         return view('back-end.products.details',[
-            'data'  => $data, 'brands' => $brands, 'series' => $series, 'genders' => $genders,
+            'data'  => $data, 'brands' => $brands, 'series' => $series,
             'movements' => $movements, 'cases' => $cases, 'dials' => $dials,
             'bands' => $bands, 'styles' => $styles
         ]);
@@ -62,7 +61,7 @@ class ProductsController extends Controller
             }
         }
 
-        $attr = array('model', 'name', 'slug', 'description', 'discount', 'detail', 'status', 'price',
+        $attr = array('model', 'name', 'slug', 'description', 'discount', 'detail', 'status', 'price', 'quantity',
             'series_id', 'brand_id', 'gender_id', 'movement_id',
             'case_id', 'case_shape', 'case_size',
             'dial_id', 'dial_color',
@@ -76,6 +75,9 @@ class ProductsController extends Controller
             {
                 $data->{$value} = str_slug($rq->name, '-');
                 continue;
+            }
+            if ($value == 'price') {
+                $rq->{$value} = str_replace(".", "", $rq->{$value});
             }
             $data->{$value} = $rq->{$value};
         }
@@ -97,7 +99,7 @@ class ProductsController extends Controller
             $data->save();
         }
         catch(\Exception $e) { }
-
+        
         return redirect()->action('ProductsController@getdetails', ['id' => $data->id]);
     }
 

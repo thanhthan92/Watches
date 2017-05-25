@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('status');
             $table->decimal('price', 15, 2);
             $table->string('discount')->nullable();
+            $table->integer('quantity')->unsigned()->nullable();
 
             $table->string('model')->nullable();
             $table->integer('series_id')->unsigned();
@@ -51,7 +52,6 @@ class CreateProductsTable extends Migration
 
             $table->foreign('series_id')->references('id')->on('product_series')->onDelete('cascade');
             $table->foreign('brand_id')->references('id')->on('product_brand')->onDelete('cascade');
-            $table->foreign('gender_id')->references('id')->on('product_gender')->onDelete('cascade');
             $table->foreign('movement_id')->references('id')->on('product_movement')->onDelete('cascade');
             $table->foreign('case_id')->references('id')->on('product_case')->onDelete('cascade');
             $table->foreign('dial_id')->references('id')->on('product_dial')->onDelete('cascade');
