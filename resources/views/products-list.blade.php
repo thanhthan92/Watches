@@ -4,10 +4,7 @@
 	<div class="row">
 		<div class="breadcrumbs"><!-- .breadcrumbs -->
 			<ul>
-				<li><a href="{!! url('/') !!}" title="Trở về trang chủ">Trang chủ</a><span> / </span></li>
-				@if(count($products))
-					<li>{!! $products[0]->gender_id == 1 ? 'Đồng hồ nam' : 'Đồng hồ nữ' !!}</li>
-				@endif
+				<li><a href="{!! url('/') !!}" title="Trở về trang chủ">Trang chủ</a></li>
 			</ul>
 		</div><!-- /.breadcrumbs -->
 		@include('modules.sliderBar')
