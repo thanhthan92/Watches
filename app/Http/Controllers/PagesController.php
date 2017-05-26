@@ -180,6 +180,10 @@ class PagesController extends Controller
                     'product_movement.name as movement', 'product_case.name as case', 'product_dial.name as dial',
                     'product_band.name as band', 'product_style.name as style')->first();
 
+        if (!$data) {
+            return redirect()->route('index');
+        }
+
         $data->gender = $data->gender_id == 1 ? 'Đồng hồ nam' : 'Đồng hồ nữ';
         $data->images = unserialize($data->images);
 
@@ -229,6 +233,7 @@ class PagesController extends Controller
                         ->join('product_style', 'products.style_id', '=', 'product_style.id')
                         ->where('gender_id', '=', $idGender)
                         ->where('style_id', '=', $style)
+                        ->select('products.*')
                         ->get(); 
             }
 
@@ -237,6 +242,7 @@ class PagesController extends Controller
                         ->join('product_brand', 'products.brand_id', '=', 'product_brand.id')
                         ->where('gender_id', '=', $idGender)
                         ->where('brand_id', '=', $brands)
+                        ->select('products.*')
                         ->get(); 
             }
         }
@@ -259,6 +265,7 @@ class PagesController extends Controller
             $data = DB::table('products')
                     ->join('product_brand', 'products.brand_id', '=', 'product_brand.id')
                     ->where('brand_id', '=', end($listStyle_brands))
+                    ->select('products.*')
                     ->get();    
         }
         return view('products-list',['products'=>$data]);
