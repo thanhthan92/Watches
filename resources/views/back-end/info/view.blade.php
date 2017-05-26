@@ -29,7 +29,7 @@
             </div>
 
             <div class="form-group col-xs-12 col-sm-12">
-                <label for="website-email">Email</label>
+                <label for="website-email">Email nhận đơn đặt hàng</label>
                 <input type="text" name="website_email" id="website-email" value="{!! $data['website_email'] !!}" 
                     class="form-control" placeholder="Email" />
             </div>

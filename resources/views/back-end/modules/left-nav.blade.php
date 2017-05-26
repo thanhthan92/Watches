@@ -35,7 +35,7 @@
 			</li>
 
 			<!-- 'Quản lý đơn hàng' menu -->
-			<li>
+			<li id="order">
 				<a href="{!!url('admin/donhang')!!}">
 					<svg class="glyph stroked bag"><use xlink:href="#stroked-bag"></use></svg>
 					Quản lý đơn đặt hàng

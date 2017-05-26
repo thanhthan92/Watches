@@ -5,7 +5,7 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Dơn đặt hàng</li>
+				<li class="active">Đơn đặt hàng</li>
 			</ol>
 		</div><!--/.row-->
 		<div class="row">
@@ -42,7 +42,7 @@
 										<th>Ngày đặt</th>
 										<th>Thành tiền</th>
 										<th>Trạng thái</th>
-										<th>Action</th>
+										<th></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -54,16 +54,17 @@
 											<td>{!!$row->user->phone!!}</td>
 											<td>{!!$row->user->email!!}</td>											
 											<td>{!!$row->created_at!!}</td>
-											<td>{!!$row->total!!} Vnd</td>
+											<td>{!!number_format($row->total, 0, ',', '.')!!} VNĐ</td>
 											<td>
-												@if($row->status ==0)
+												@if($row->status == 0)
 													<span style="color:#d35400;">Chưa xác nhận</span>
 												@else
-													<span style="color:#27ae60;"> Đã xác nhận</span>
+													<span style="color:#27ae60;">Đã xác nhận</span>
 												@endif
 											</td>
 											<td>
-											    <a href="{!!url('admin/donhang/detail/'.$row->id)!!}" title="Chi tiết">Chi tiết  </a> &nbsp;
+											    <a href="{!!url('admin/donhang/detail/'.$row->id)!!}" title="Chi tiết">Chi tiết  </a>
+											    &nbsp;
 											    <a href="{!!url('admin/donhang/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"> Hủy bỏ</a>
 											</td>
 										</tr>
@@ -78,4 +79,10 @@
 		</div><!--/.row-->		
 	</div>	<!--/.main-->
 <!-- =====================================main content - noi dung chinh trong chu -->
+<script type="text/javascript">
+    var obj = document.getElementById('order');
+    if (obj != null && obj != undefined) {
+        obj.className = "active";
+    }
+</script>
 @endsection

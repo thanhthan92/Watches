@@ -27,6 +27,7 @@ class OdersController extends Controller
     			 	->get();
     	return view('back-end.oders.detail',['data'=>$data,'oder'=>$oder]);
     }
+    
     public function postdetail($id)
     {
     	$oder = Oders::find($id);
@@ -34,20 +35,21 @@ class OdersController extends Controller
     	$oder->status = 1;
     	$oder->save();
     	return redirect('admin/donhang')
-      	->with(['flash_level'=>'result_msg','flash_massage'=>' Đã xác nhận đơn hàng thành công !']);    	
+      	->with(['flash_level'=>'result_msg','flash_massage'=>'Đã xác nhận đơn hàng thành công!']);    	
 
     }
-     public function getdel($id)
+
+    public function getdel($id)
     {       
     	$oder = Oders::where('id',$id)->first();
     	if ($oder->status ==1) {
     		return redirect()->back()
-    		->with(['flash_level'=>'result_msg','flash_massage'=>'Không thể hủy đơn hàng số: '.$id.' vì đã được xác nhận!']);
+    		->with(['flash_level' => 'result_msg', 'flash_massage' => 'Không thể hủy đơn hàng số: '. $id . ' vì đã được xác nhận!']);
     	} else {
     		$oder = Oders::find($id);
         	$oder->delete();
         	return redirect('admin/donhang')
-         	->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ đơn hàng số:  '.$id.' !']);
+         	->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ đơn hàng số:  '.$id.'!']);
      	}
     }
 }

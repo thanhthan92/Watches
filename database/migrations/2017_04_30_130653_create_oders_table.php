@@ -17,11 +17,10 @@ class CreateOdersTable extends Migration
             $table->integer('c_id')->unsigned();
             $table->foreign('c_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('qty');
-            $table->decimal('sub_total', 13, 2);
             $table->decimal('total', 13, 2);
-            $table->integer('status');
-            $table->string('type',50);
-            $table->string('note');            
+            $table->integer('status')->nullable();
+            $table->string('type', 50)->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

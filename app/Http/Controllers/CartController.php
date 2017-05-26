@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Mail;
 use DB;
 use Cart;
 use Datetime;
 use App\Products;
+use App\Info;
+use App\User;
+use App\Oders;
+use App\Oders_detail;
 
 class CartController extends Controller
 {
@@ -59,11 +64,51 @@ class CartController extends Controller
 
     public function postcheckoutcart(Request $rq)
     {
-        $user = array(
-            'name' => $rq->user_name, 'phone' => $rq->user_phone, 'email' => $rq->user_email, 'address' => $rq->user_address
-        );
+        // Get or set user - Start
+        $user = DB::table('users')->where('email', $rq->user_email)->orWhere('phone', $rq->user_phone)->first();
+        if ($user == null) {
+            $user = new User();
+        }
+        $attrs = array('name', 'phone', 'email', 'address');
+        foreach ($attrs as $value) {
+            $user->{$value} = $rq->{'user_' . $value};
+        }
+        $user->save();
+        // Get or set user - End
 
-        // Send mail and destroy cart
+        // Send email - Start
+        $admin = DB::table('website_metadata')->where('key', 'website_email')->value('value');
+        if (!empty($admin)) {
+            Mail::send('cart.mail', ['user' => $user], function($m) use ($user, $admin) {
+                $subject = '[Đơn đặt hàng] ' . $user['name'];
+                $m->from(env('MAIL_USERNAME'), 'Bộ phận đặt hàng');
+                $m->to($admin, 'Bộ phận tiếp nhận đặt hàng')->subject($subject);
+                if ($user->email) {
+                    $m->cc($user->email, $user->name);
+                }
+            });
+        }
+        // Send email - End
+
+        // Saving the order - Start
+        $order = new Oders();
+        $order->c_id = $user->id;
+        $order->qty= Cart::count();
+        $order->total = 0;
+        $order->save();
+
+        foreach(Cart::content() as $val) {
+            $order->total += $val->price * $val->qty;
+
+            $details = new Oders_detail();
+            $details->o_id = $order->id;
+            $details->pro_id = $val->id;
+            $details->qty = $val->qty;
+            $details->save();
+        }
+        $order->save();
+        // Saving the order - End
+
         Cart::destroy();
 
         return view('cart.products-cart-checkout', ['end' => true, 'user' => $user]);
