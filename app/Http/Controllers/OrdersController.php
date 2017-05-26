@@ -15,7 +15,7 @@ class OrdersController extends Controller
     public function getlist()
     {
     	$data = Orders::paginate(10);
-    	return view('back-end.orders.list',['data'=>$data]);
+    	return view('back-end.orders.list',['data' => $data]);
     }
 
     public function getdetail($id)
@@ -27,16 +27,20 @@ class OrdersController extends Controller
         $data = array();
         foreach ($ordersDetail as $value) {
             $product = Products::find($value->pro_id);
-            $product->images = unserialize($product->images);
+            $imgs = unserialize($product->images);
             if (empty($product->discount)) {
                 $product->discount = 0;
             }
-            $tmp = new \stdClass;
+            $tmp = new \stdClass();
             $tmp->id = $product->id;
             $tmp->name = $product->name;
             $tmp->qty = $value->qty;
             $tmp->price = $product->price * (100 - $product->discount) / 100;
-            $tmp->options['image'] = url('uploads/products/details/' . $product->images[0]);
+            $img = url('/image/temporary.jpg');
+            if (!empty($imgs)) {
+                $img = url('uploads/products/details/' . $imgs[0]);
+            }
+            $tmp->options['image'] = $img;
             $tmp->options['url'] = url('/chi-tiet/' . $product->slug . '-' . $product->id . '.html');
             $data[] = $tmp;
         }

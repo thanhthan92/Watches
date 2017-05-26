@@ -31,13 +31,13 @@
         <div>
             <div class="page-title title-buttons">
                 <h1>CHI TIẾT GIỎ HÀNG</h1>
-                <div class="category-title-label-aleft" onclick="document.location.href='/thuong-hieu.html';">Tiếp tục mua hàng</div>
+                <div class="category-title-label-aleft" onclick="document.location.href='{!! url('/thuong-hieu.html')!!}';">Tiếp tục mua hàng</div>
             </div>
         </div>
     </div>
     <div>
         <div class="col-xs-12 col-sm-12 col-md-8 cart-table-box">
-            <form action="/shopping-cart/update" method="POST">
+            <form action="{!! url('/shopping-cart/update') !!}" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}" />
                 <table id="shopping-cart-table" class="cart-table data-table">
                     <colgroup>
@@ -85,7 +85,7 @@
                                 <span class="cart-price"><span class="price">{!! number_format($val->price*$val->qty, 0, ',', '.') !!} VNĐ</span></span>
                             </td>
                             <td class="a-center product-cart-remove last">
-                                <a href="/shopping-cart/delete/{!! $val->rowId !!}" title="Remove Item" class="btn-remove btn-remove2 btn-remove-cart">Remove Item
+                                <a href="{!! url('/shopping-cart/delete/' . $val->rowId) !!}" title="Remove Item" class="btn-remove btn-remove2 btn-remove-cart">Remove Item
                                 </a>
                             </td>
                         </tr>

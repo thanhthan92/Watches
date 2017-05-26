@@ -41,7 +41,7 @@
         <div>
             <div class="page-title title-buttons">
                 <h1>{!! $end ? 'KẾT THÚC ' : '' !!}ĐẶT HÀNG</h1>
-                <div class="category-title-label-aleft" onclick="document.location.href='/thuong-hieu.html';">Tiếp tục mua hàng</div>
+                <div class="category-title-label-aleft" onclick="document.location.href='{!! url('/thuong-hieu.html') !!}';">Tiếp tục mua hàng</div>
             </div>
         </div>
     </div>
@@ -58,7 +58,7 @@
                     </div>
                     <div class="user-information" class="panel-collapse collapse in">
                         <div class="panel-body">
-                            <form method="POST" action="/shopping-cart/checkout">
+                            <form method="POST" action="{!! url('/shopping-cart/checkout') !!}">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}" />
                                 <div class="form-group">
                                     <label for="user-name">Họ và tên</label>
@@ -90,7 +90,7 @@
                         </h4>
                     </div>
                     <div class="user-information-details" class="panel-collapse collapse in">
-                        <form action="/shopping-cart/update" method="POST">
+                        <form action="{!! url('/shopping-cart/update') !!}" method="POST">
                             <input type="hidden" name="_token" value="{{csrf_token()}}" />
                             <table id="shopping-cart-table" class="cart-table data-table">
                                 <colgroup>

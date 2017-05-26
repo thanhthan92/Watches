@@ -4,17 +4,17 @@
                 <div class="title">Tại sao phải mua từ chúng tôi</div>
                     <div class="col-xs-6 col-sm-4 col-md-4">
                         <span class="img-label">100% là hàng chính hãng</span>
-                        <img class="wbfu-1" alt="" src="../images/iconFooter/1.png">
+                        <img class="wbfu-1" alt="" src="{!!url('/images/iconFooter/1.png') !!}">
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-4 col-md-4">
                         <span class="img-label">Chất lượng sản phẩm tốt nhất</span>
-                        <img class="wbfu-1" alt="" src="../images/iconFooter/2.png" style="width:120px !important">
+                        <img class="wbfu-1" alt="" src="{!!url('/images/iconFooter/2.png') !!}" style="width:120px !important">
                         </a>
                     </div>
                     <div class="col-xs-6 col-sm-4 col-md-4">
                         <span class="img-label">Cam kết giá tốt nhất thị trường</span>
-                        <img class="wbfu-1" alt="" src="../images/iconFooter/3.png">
+                        <img class="wbfu-1" alt="" src="{!!url('/images/iconFooter/3.png') !!}">
                         </a>
                     </div>
             </div>

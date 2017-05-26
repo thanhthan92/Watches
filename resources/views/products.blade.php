@@ -67,6 +67,7 @@
 
 		<div class="product-essential row"><!-- .product-essential -->
 			<div class="col-xs-12 col-sm-12 col-md-5">
+				@if (!empty($products->images))
 				<img id="main-image" class="img-responsive" src="{!!url('uploads/products/details/' . $products->images[0])!!}" />
 				<div class="text-center image-slide">
 					@for($i = 0, $len = count($products->images); $i < $len; $i++)
@@ -86,6 +87,7 @@
 							el.setAttribute('class', 'selected');
 					}
 				</script>
+				@endif
 			</div>
 
 			<div class="col-xs-12 col-sm-6 col-md-4">
@@ -162,7 +164,7 @@
 						@endif
 					</div>
 					<div class="add-to-box">
-						<form method="GET" action="/shopping-cart/add/{!! $products->id !!}">
+						<form method="GET" action="{!!url('/shopping-cart/add/' . $products->id) !!}">
 						<p class="availability-in-stock text-uppercase text-center">In stock ready to ship</p>
 						<label>Số lượng</label>&nbsp;
 						<input name="quantity" type="text" maxlength="12" value="1" class="form-control" />

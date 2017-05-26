@@ -32,6 +32,10 @@ class CartController extends Controller
         if (empty($pro->discount)) {
             $pro->discount = 0;
         }
+
+        if (empty($pro->images)) {
+            return redirect()->route('index');
+        }
             
         Cart::add([
             'id'        => $pro->id,
@@ -62,7 +66,12 @@ class CartController extends Controller
 
     public function getcheckoutcart()
     {
-        return view('cart.products-cart-checkout');
+        if (Cart::count() >= 1) {
+            return view('cart.products-cart-checkout');
+        }
+        else {
+            return view ('cart.products-cart');
+        }
     }
 
     public function postcheckoutcart(Request $rq)
@@ -96,7 +105,7 @@ class CartController extends Controller
         // Saving the order - Start
         $order = new Orders();
         $order->c_id = $user->id;
-        $order->qty= Cart::count();
+        $order->qty = Cart::count();
         $order->total = 0;
         $order->save();
 

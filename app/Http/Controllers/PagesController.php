@@ -182,7 +182,7 @@ class PagesController extends Controller
 
         $data->gender = $data->gender_id == 1 ? 'Đồng hồ nam' : 'Đồng hồ nữ';
         $data->images = unserialize($data->images);
-        
+
         $trans = array();
         Info::all()->map(function($item) use (&$trans) {
             $trans[$item->key] = $item->value;

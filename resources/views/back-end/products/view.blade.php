@@ -60,13 +60,18 @@
         }
 
         function del(el, id) {
+        	var cont = confirm("Bạn có muốn xóa sản phẩm này không?");
+        	if (!cont) {
+        		return;
+        	}
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
 					el.parentElement.parentElement.remove();
+					alert("Xóa sản phẩm thành công");
 				}
 			};
-			xhttp.open("GET", "{!! url('admin/products/del/') !!}" + '/' . id, true);
+			xhttp.open("GET", "{!! url('admin/products/del/') !!}" + '/' + id, true);
 			xhttp.send();
         }
     </script>

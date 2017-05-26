@@ -51,6 +51,7 @@ class ProductsController extends Controller
     public function postdetails(ProductsRequest $rq, $id = null)
     {
         $data = new Products;
+        $images = array();
 
         if ($id) {
             $data = Products::find($id);
@@ -59,6 +60,7 @@ class ProductsController extends Controller
             {
                 return redirect()->action('ProductsController@getdetails', ['id' => null]);
             }
+            $images = unserialize($data->images);
         }
 
         $attr = array('model', 'name', 'slug', 'description', 'discount', 'detail', 'status', 'price', 'quantity',
@@ -81,19 +83,39 @@ class ProductsController extends Controller
             }
             $data->{$value} = $rq->{$value};
         }
-        $images = array();
+
+        $tmp = array();
         if ($rq->hasFile('images')) {
             $list = $rq->file('images');
             foreach ($list as $row) {
                 if (isset($row)) {
                     $name = time() . '-' . $row->getClientOriginalName();
-                    array_push($images, $name);
+                    $tmp[] = $name;
                     $row->move('uploads/products/details/', $name);
                 }
             }
         }
-
-        $data->images = serialize($images);
+        $i = 0;
+        if (!empty($rq->update) && !empty($tmp) && !empty($images)) {
+            foreach ($rq->update as $value) {
+                unlink('uploads/products/details/' . $images[$value]);
+                $images[$value] = $tmp[$i];
+                unset($tmp[$i++]);
+            }
+        }
+        if (!empty($rq->delete) && !empty($images)) {
+            foreach ($rq->delete as $value) {
+                unlink('uploads/products/details/' . $images[$value]);
+                unset($images[$value]);
+            }
+        }
+        if (!empty($tmp)) {
+            foreach ($tmp as $val) {
+                $images[] = $val;
+            }
+        }
+        
+        $data->images = serialize(array_values($images));
 
         try {
             $data->save();
@@ -105,6 +127,9 @@ class ProductsController extends Controller
 
     public function getdel($id)
     {
-
+        $data = Products::find($id);
+        if ($data) {
+            $data->delete();
+        }
     }
 }
