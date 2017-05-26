@@ -12,8 +12,9 @@ class Product_CaseTableSeeder extends Seeder
     public function run()
     {
         DB::table('product_case')->insert([
-            'name' => '--',
-            'desc' => ''
+            ['name' => '--', 'desc' => ''],
+            ['name' => 'Thép không gỉ', 'desc' => ''],
+            ['name' => 'Nhựa dẻo', 'desc' => '']
         ]);
     }
 }

@@ -34,9 +34,6 @@
     <!-- Placed at the end of the document so the pages load faster -->
     
     <script src="{!!url('/bootstrap/js/bootstrap.min.js')!!}"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    {{-- <script src="{!!url('/bootstrap/js/ie10-viewport-bug-workaround.js')!!}"></script> --}}
-    <!-- menu js -->
     <script src="{!!url('/js/menu.js')!!}"></script> 
     <script type='text/javascript' src='{!!url('/js/jquery.easing.1.3.js')!!}'></script> 
     <script type='text/javascript' src='{!!url('/js/camera.min.js')!!}'></script> 
@@ -44,7 +41,6 @@
     <script type='text/javascript' src='{!!url('/js/active-menu.js')!!}'></script> 
     <script src="{!!url('/js/jquery.blueimp-gallery.min.js')!!}"></script>
 
-    {{-- validate --}}
     <script src="{!!url('/js/validate/jquery.validate.min.js')!!}"></script>
     <script src="{!!url('/js/validate/jquery.validate.js')!!}"></script>
 

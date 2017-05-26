@@ -70,11 +70,11 @@ Route::group(['middleware' => 'admin'], function () {
         // -------------------- quan ly đơn đặt hàng--------------------
         Route::group(['prefix' => '/donhang'], function() {;
 
-           Route::get('',['as'       =>'getpro','uses' => 'OdersController@getlist']);
-           Route::get('/del/{id}',['as'   =>'getdeloder','uses' => 'OdersController@getdel'])->where('id','[0-9]+');
+           Route::get('',['as'       =>'getpro','uses' => 'OrdersController@getlist']);
+           Route::get('/del/{id}',['as'   =>'getdeloder','uses' => 'OrdersController@getdel'])->where('id','[0-9]+');
            
-           Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'OdersController@getdetail'])->where('id','[0-9]+');
-           Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'OdersController@postdetail'])->where('id','[0-9]+');
+           Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'OrdersController@getdetail'])->where('id','[0-9]+');
+           Route::post('/detail/{id}',['as' =>'postdetail','uses' => 'OrdersController@postdetail'])->where('id','[0-9]+');
       });
         // -------------------- quan ly thong tin khach hang--------------------
         Route::group(['prefix' => '/khachhang'], function() {;

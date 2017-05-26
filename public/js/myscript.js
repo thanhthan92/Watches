@@ -1,22 +1,3 @@
-
-jQuery(function(){
-	
-	jQuery('#camera_wrap_1').camera({
-		
-		height: '300',
-		loader: 'bar',
-        alignment: 'center',
-        time: 3000,
-		pagination: true,
-		thumbnails: false
-	});
-    jQuery('#camera_wrap_2').camera({
-        height: '250',
-        loader: 'bar',                
-        pagination: true,
-        thumbnails: false
-    });
-});
 function openNav() {
     document.getElementById("mySidenav").style.width = "55%";
 }

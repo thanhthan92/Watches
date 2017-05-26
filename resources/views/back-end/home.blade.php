@@ -9,8 +9,8 @@
 			</ol>
 		</div><!--/.row-->
 		<?php 
-          $oder = DB::table('oders')->count('*'); 
-          $oder_new = DB::table('oders')->where('status',0)->count('*'); 
+          $order = DB::table('orders')->count('*'); 
+          $newOrders = DB::table('orders')->where('status', 0)->count('*'); 
           $mem = DB::table('users')->count('*');            
           $pro = DB::table('products')->count('*');            
 
@@ -29,7 +29,7 @@
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"/></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{!!$oder!!}</div>
+							<div class="large">{!!$order!!}</div>
 							<div class="text-muted"> tổng đơn hàng</div>
 						</div>
 					</div>
@@ -42,7 +42,7 @@
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"/></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">{!!$oder_new!!}</div>
+							<div class="large">{!!$newOrders!!}</div>
 							<div class="text-muted"> Đơn hàng mới</div>
 						</div>
 					</div>

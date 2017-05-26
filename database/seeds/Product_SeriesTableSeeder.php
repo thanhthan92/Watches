@@ -12,8 +12,9 @@ class Product_SeriesTableSeeder extends Seeder
     public function run()
     {
         DB::table('product_series')->insert([
-            'name' => '--',
-            'desc' => ''
+            ['name' => '--', 'desc' => ''],
+            ['name' => 'Originals', 'desc' => ''],
+            ['name' => 'Hydroconquest', 'desc' => '']
         ]);
     }
 }

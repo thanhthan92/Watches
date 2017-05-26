@@ -12,8 +12,11 @@ class Product_BandTableSeeder extends Seeder
     public function run()
     {
         DB::table('product_band')->insert([
-            'name' => '--',
-            'desc' => ''
+            ['name' => '--', 'desc' => ''],
+            ['name' => 'Da', 'desc' => ''],
+            ['name' => 'Nhựa', 'desc' => ''],
+            ['name' => 'Thép không gỉ', 'desc' => ''],
+            ['name' => 'Vải', 'desc' => '']
         ]);
     }
 }

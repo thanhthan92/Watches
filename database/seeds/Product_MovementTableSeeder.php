@@ -12,8 +12,10 @@ class Product_MovementTableSeeder extends Seeder
     public function run()
     {
         DB::table('product_movement')->insert([
-            'name' => '--',
-            'desc' => ''
+            ['name' => '--', 'desc' => ''],
+            ['name' => 'Cơ', 'desc' => ''],
+            ['name' => 'Tinh thể thạch anh (quartz)', 'desc' => ''],
+            ['name' => 'Năng lượng mặt trời', 'desc' => '']
         ]);
     }
 }

@@ -11,8 +11,8 @@ use Datetime;
 use App\Products;
 use App\Info;
 use App\User;
-use App\Oders;
-use App\Oders_detail;
+use App\Orders;
+use App\Orders_detail;
 
 class CartController extends Controller
 {
@@ -29,7 +29,10 @@ class CartController extends Controller
     {
         $pro = Products::find($id);
         $pro->images = unserialize($pro->images);
-
+        if (empty($pro->discount)) {
+            $pro->discount = 0;
+        }
+            
         Cart::add([
             'id'        => $pro->id,
             'name'      => $pro->name,
@@ -65,7 +68,7 @@ class CartController extends Controller
     public function postcheckoutcart(Request $rq)
     {
         // Get or set user - Start
-        $user = DB::table('users')->where('email', $rq->user_email)->orWhere('phone', $rq->user_phone)->first();
+        $user = User::where('email', $rq->user_email)->orWhere('phone', $rq->user_phone)->first();
         if ($user == null) {
             $user = new User();
         }
@@ -91,7 +94,7 @@ class CartController extends Controller
         // Send email - End
 
         // Saving the order - Start
-        $order = new Oders();
+        $order = new Orders();
         $order->c_id = $user->id;
         $order->qty= Cart::count();
         $order->total = 0;
@@ -100,7 +103,7 @@ class CartController extends Controller
         foreach(Cart::content() as $val) {
             $order->total += $val->price * $val->qty;
 
-            $details = new Oders_detail();
+            $details = new Orders_detail();
             $details->o_id = $order->id;
             $details->pro_id = $val->id;
             $details->qty = $val->qty;
