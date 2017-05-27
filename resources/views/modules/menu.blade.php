@@ -140,6 +140,7 @@
                                                         @if($count++ == 8)
                                                             @break;
                                                         @elseif($value['name'] == '--')
+                                                            <?php $count-- ?>
                                                             @continue;
                                                         @endif
                                                         <li><a href="{!! url('/dong-ho-nam/style-' . str_slug($value['name']) . '-' . $value['id'] . '.html') !!}">{!!$value['name']!!}</a></li>  
@@ -150,24 +151,25 @@
                                         <li class="odd">
                                             <div class="nav-blk-2">
                                                 <h3>Phân loại theo thương hiệu</h3>
-                                                <?php $count = 0; ?>
+                                                <?php $count = 0; $i = 0; ?>
                                                 <ul class="body-1">
                                                     @for ($i=0; $i < count($data['brands']); $i++)
                                                         @if($count++ == 8)
                                                             @break;
                                                         @elseif($data['brands'][$i]['name'] == '--')
+                                                            <?php $count-- ?>
                                                             @continue;
                                                         @endif
                                                         <li><a href="{!! url('/dong-ho-nam/thuonghieu-' . str_slug($data['brands'][$i]['name']) . '-' . $data['brands'][$i]['id'] . '.html') !!}">{!! $data['brands'][$i]['name'] !!}</a></li>  
                                                     @endfor
                                                 </ul>
                                                 <ul class="body-2">
-                                                    <?php $count = 0; ?>
                                                     @if (count($data['brands']) >= 8)
-                                                        @for ($i = 8; $i < count($data['brands']); $i++)
+                                                        @for ($i, $count = 0; $i < count($data['brands']); $i++)
                                                             @if($count++ == 8)
                                                                 @break;
                                                             @elseif($data['brands'][$i]['name'] == '--')
+                                                                <?php $count-- ?>
                                                                 @continue;
                                                             @endif
                                                             <li><a href="{!! url('/dong-ho-nam/thuonghieu-' . str_slug($data['brands'][$i]['name']) . '-' . $data['brands'][$i]['id'] . '.html') !!}">{!! $data['brands'][$i]['name'] !!}</a></li>  
@@ -194,6 +196,7 @@
                                                         @if($count++ == 8)
                                                             @break;
                                                         @elseif($value['name'] == '--')
+                                                            <?php $count-- ?>
                                                             @continue;
                                                         @endif
                                                         <li><a href="{!! url('/dong-ho-nu/style-' . str_slug($value['name']) . '-' . $value['id'] . '.html') !!}">{!!$value['name']!!}</a></li>  
@@ -205,24 +208,25 @@
                                         <li class="odd">
                                             <div class="nav-blk-2">
                                                 <h3>Phân loại theo thương hiệu</h3>
-                                                <?php $count = 0; ?>
+                                                <?php $count = 0; $i = 0; ?>
                                                 <ul class="body-1">
-                                                    @for ($i=0; $i < count($data['brands']); $i++)
+                                                    @for ($i = 0, $count = 0; $i < count($data['brands']); $i++)
                                                         @if($count++ == 8)
                                                             @break;
                                                         @elseif($data['brands'][$i]['name'] == '--')
+                                                            <?php $count-- ?>
                                                             @continue;
                                                         @endif
                                                         <li><a href="{!! url('/dong-ho-nu/thuonghieu-' . str_slug($data['brands'][$i]['name']) . '-' . $data['brands'][$i]['id'] . '.html') !!}">{!! $data['brands'][$i]['name'] !!}</a></li>  
                                                     @endfor
                                                 </ul>
                                                 <ul class="body-2">
-                                                    <?php $count = 0; ?>
                                                     @if (count($data['brands']) >= 8)
-                                                        @for ($i = 8; $i < count($data['brands']); $i++)
+                                                        @for ($i, $count = 0; $i < count($data['brands']); $i++)
                                                             @if($count++ == 8)
                                                                 @break;
                                                             @elseif($data['brands'][$i]['name'] == '--')
+                                                                <?php $count-- ?>
                                                                 @continue;
                                                             @endif
                                                             <li><a href="{!! url('/dong-ho-nu/thuonghieu-' . str_slug($data['brands'][$i]['name']) . '-' . $data['brands'][$i]['id'] . '.html') !!}">{!! $data['brands'][$i]['name'] !!}</a></li>  
@@ -294,6 +298,7 @@
         {
             renderTableFiter(arrayFromPHP[i]);
         }
+        $('ul.mainShop > li:nth-child(1)').click(); // alway click the 1st item
 
         $('ul.nav.navbar-nav > li.dropdown.mega-dropdown').mouseover(function() {
             $('ul.nav.navbar-nav > li.dropdown.mega-dropdown').each(function() {
