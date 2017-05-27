@@ -39,6 +39,7 @@
         <div class="col-xs-12 col-sm-12 col-md-8 cart-table-box">
             <form action="{!! url('/shopping-cart/update') !!}" method="POST">
                 <input type="hidden" name="_token" value="{{csrf_token()}}" />
+                @if (Cart::count() > 0)
                 <table id="shopping-cart-table" class="cart-table data-table">
                     <colgroup>
                         <col width="1"><col width="1"><col width="1"><col width="1"><col width="1"><col width="1">
@@ -92,11 +93,13 @@
                         @endforeach
                     </tbody>
                 </table>
+                @endif
             </form>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-4 cart-total-box">
             <div class="cart-totals-wrapper">
                 <div class="cart-totals">
+                    @if (Cart::count() > 0)
                     <table id="shopping-cart-totals-table" class="table">
                         <colgroup>
                             <col>
@@ -114,6 +117,7 @@
                             <button type="button" title="Proceed to Checkout" class="btn btn-success btn-lg" onclick="window.location='{!! url('/shopping-cart/checkout') !!}'">Đặt Hàng</button>
                         </li>
                     </ul>
+                    @endif
                 </div>
             </div>
         </div>

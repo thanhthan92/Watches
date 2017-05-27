@@ -1,8 +1,8 @@
 @extends('layouts.master')
 @section('content')
+@include('modules.sliderBar')
 <div class="container">
-	<div class="row" style="margin-top:25px">
-		@include('modules.sliderBar')
+	<div style="margin-top:25px">
 		<ul class="products-grid row" style="margin-top:25px">
 			@foreach ($products as $val)
 				{!!  create1productitem($val) !!}

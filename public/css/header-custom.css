@@ -5904,7 +5904,8 @@ float:none!important
 }
 
 body .sidebar .block.block-layered-nav {
-	background:#efeff0;
+	border-top: 1px solid #CCC;
+	border-bottom: 1px solid #CCC;
 	padding:10px
 }
 
@@ -5943,7 +5944,6 @@ margin-right:5px
 }
 
 .filter-hearding {
-padding-bottom:10px;
 width:auto;
 float:left;
 margin-right:50px
@@ -20680,10 +20680,6 @@ padding:0
 display:none
 }
 
-.block.block-layered-nav.amshopby-filters-left {
-padding:0!important
-}
-
 .filter-hearding {
 width:100%;
 margin:0;
@@ -25394,4 +25390,16 @@ padding: 0
 @media only screen and (max-width:320px) { /*iphone 5*/
 .header .logo img {
 max-width:125px
+}
+}
+
+@media only screen and (max-width:768px) {
+ul li img.images-list-item {
+height: 200px
+}
+}
+@media only screen and (min-width:768px) {
+ul li img.images-list-item {
+height: 250px
+}
 }

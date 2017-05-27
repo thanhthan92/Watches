@@ -1,7 +1,7 @@
 <?php $data = App\Http\Controllers\PagesController::getMetaData();?>
 <div class="container">
     <div class="row">
-        <div class="sidebar col-xs-12 col-sm-12 col-md-12">
+        <div class="sidebar col-xs-12 col-sm-12 col-md-12 no-padding" style="margin:20px 0">
             <div class="block block-layered-nav amshopby-filters-left">
                 <div id="btn-refine-search" class="btn refine-search" onclick="toggleFilters()">Refine Search</div>
                 <div class="visible-xs"> <span class="btn btn-default btn-block a-right" href="#filter-list" data-toggle="collapse"> <span class="glyphicon glyphicon-chevron-down"></span> </span>
