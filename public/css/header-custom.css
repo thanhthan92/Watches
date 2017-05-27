@@ -21412,6 +21412,7 @@ transition:all .3s ease-in-out .1s;
 }
 
 img {
+max-height: 250px;
 width:auto;
 display:inline-block;
 vertical-align:top;

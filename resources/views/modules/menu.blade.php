@@ -228,7 +228,7 @@
                                                             <li><a href="{!! url('/dong-ho-nu/thuonghieu-' . str_slug($data['brands'][$i]['name']) . '-' . $data['brands'][$i]['id'] . '.html') !!}">{!! $data['brands'][$i]['name'] !!}</a></li>  
                                                         @endfor
                                                     @endif
-                                                </ul>s
+                                                </ul>
                                             </div>
                                         </li>
                                     </ul>
