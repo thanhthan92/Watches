@@ -12,7 +12,7 @@
         <div class="header">
             <div class="container contain-container">
                 <div class="row-fluid">
-                    <div class="col-xs-2 col-sm-12 col-md-3">
+                    <div class="col-xs-2 col-sm-12 col-md-3 no-padding">
                         <ul class="hedList">
                             <li class="iconCall">
                               <a href="tel:866-735-9116">866-735-9116</a>
@@ -25,7 +25,7 @@
                     <div class="branding header-logo col-xs-7 col-sm-12 col-md-6">
                         <a href="{!!url('')!!}" title="Certified Watch Store" class="logo"> <img id="head_site_logo_desk" src="https://www.certifiedwatchstore.com/skin/frontend/b-responsive/cws/images/cws-logo-black.png" alt="Certified Watch Store"> </a>
                     </div>
-                    <div class="mobile-responsive-header skip-links col-xs-2" style="padding-left: 30px !important">
+                    <div class="mobile-responsive-header skip-links col-xs-2" style="padding-left:30px!important;padding-right:0">
                         <div class="header-minicart">
                             <a href="{!!url('/gio-hang/')!!}" class="myBag skip-link skip-cart  no-count">
                                 <span class="badgeIcon">({!!Cart::count();!!})</span>
@@ -48,7 +48,7 @@
                                 </ul>
                             </div>
                         </div>
-                    <div class="branding col-xs-12 col-sm-12 col-md-3">
+                    <div class="branding col-xs-12 col-sm-12 col-md-3 no-padding-pc">
                         <div class="skip-links switches col-xs-12 col-sm-12 col-md-12 a-right headerMy">
                             <ul class="customer-menu">
                                 <li class="first"> <a href="#">My Account</a>
