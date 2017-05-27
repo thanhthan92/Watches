@@ -76,6 +76,6 @@ class InfoController extends Controller
             }
         }
 
-        return redirect('admin/information')->with(['message'=>'OK']);
+        return redirect('admin/information')->with(['message'=>'Cập nhật thành công!']);
     }
 }

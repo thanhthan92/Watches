@@ -2,9 +2,8 @@
 @section('content')
     <!-- main content - noi dung chinh trong chu -->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
+		<div class="row top-content-backend">
 			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
 				<li class="active">Home</li>
 			</ol>
 		</div><!--/.row-->
@@ -15,7 +14,7 @@
           $pro = DB::table('products')->count('*');            
 
         ?>
-		<div class="row">
+		<div class="row" style="margin-top: 50px">
 			<div class="col-lg-12">
 				<h1 class="page-header">Dashboard</h1>
 			</div>
@@ -88,46 +87,7 @@
 				</div>
 			</div>
 		</div><!--/.row-->
-		
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Đơn hàng mới</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="92" ><span class="percent">92%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Đán giá mới</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="65" ><span class="percent">65%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Khách hàng mới</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="56" ><span class="percent">56%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Lượt truy cập</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="27" ><span class="percent">27%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-								
+
 		<div class="row">
 			<div class="col-md-8">
 				<small>Coppyright 2016</small>
@@ -135,4 +95,10 @@
 		</div><!--/.row-->
 	</div>	<!--/.main-->
 <!-- =====================================main content - noi dung chinh trong chu -->
+<script type="text/javascript">
+    var obj = document.getElementById('trangchu');
+    if (obj != null && obj != undefined) {
+        obj.className = "active";
+        }
+</script>
 @endsection

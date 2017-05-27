@@ -41,14 +41,6 @@
 					Quản lý đơn đặt hàng
 				</a>
 			</li>
-
-
-			<li>
-				<a href="{!!url('admin/nhanvien')!!}">
-					<svg class="glyph stroked female user"><use xlink:href="#stroked-female-user"/></svg>
-					Quản lý admin
-				</a>
-			</li>
 			
 		</ul>
 

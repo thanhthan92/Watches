@@ -246,26 +246,26 @@
         </div>
         <div>
             <ul class="icon-items">
+                @if(isset($data['website_authentic']) && !empty($data['website_authentic']))
                 <li class="item-1">
-                    @if(isset($data['website_authentic']) && !empty($data['website_authentic']))
-                        {!! $data['website_authentic'] !!}
-                    @endif
+                    {!! $data['website_authentic'] !!}
                 </li>
+                @endif
+                @if(isset($data['website_ship']) && !empty($data['website_ship']))
                 <li class="item-2">
-                    @if(isset($data['website_ship']) && !empty($data['website_ship']))
-                        {!! $data['website_ship'] !!}
-                    @endif
+                    {!! $data['website_ship'] !!}
                 </li>
+                @endif
+                @if(isset($data['website_safe']) && !empty($data['website_safe']))
                 <li class="item-3">
-                    @if(isset($data['website_safe']) && !empty($data['website_safe']))
-                        {!! $data['website_safe'] !!}
-                    @endif
+                    {!! $data['website_safe'] !!}
                 </li>
+                @endif
+                @if(isset($data['website_cash']) && !empty($data['website_cash']))
                 <li class="item-4">
-                    @if(isset($data['website_cash']) && !empty($data['website_cash']))
-                        {!! $data['website_cash'] !!}
-                    @endif
+                    {!! $data['website_cash'] !!}
                 </li>
+                @endif
             </ul>
         </div>
     </div>

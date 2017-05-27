@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Http\Requests\ProductsRequest;
 use App\Products;
 use Auth;
 use DateTime,File,Input,DB;
@@ -12,46 +11,53 @@ use DateTime,File,Input,DB;
 
 class ProductsController extends Controller
 {
+    private static $foreignAttrs = array('brand', 'series', 'movement', 'case', 'dial', 'band', 'style');
+    private static $attrs = array(
+        'name', 'slug', 'description', 'discount', 'detail', 'status', 'price', 'quantity',
+        'model', 'series_id', 'brand_id', 'gender_id', 'movement_id',
+        'case_id', 'case_shape', 'case_size',
+        'dial_id', 'dial_color',
+        'band_id', 'band_length', 'band_width', 'band_clasp',
+        'style_id',
+        'feature_water_resstance', 'feature', 'functions', 'upc_code'
+    );
+
+    // Get the list of products
     public function getlist()
     {
         $data = DB::table('products')
             ->join('product_brand', 'products.brand_id', '=', 'product_brand.id')
             ->select('products.*', 'product_brand.name as brand_name')
-            ->paginate(15);
+            ->paginate(10);
         return view('back-end.products.view',['data' => $data]);
     }
 
+    // Get the detail of 1 product
     public function getdetails($id = null)
     {
-        $data = new Products;
-
+        $data = null;
         if ($id) {
             $data = Products::find($id);
-
-            if (!$data) {
-                return redirect()->action('ProductsController@getdetails', ['id' => null]);
-            }
+        }
+        if (!$data) {
+            $data = new Products;
+            $data->images = array();
+        }
+        else {
+            $data->images = unserialize($data->images);
         }
 
-        $brands = DB::table('product_brand')->get();
-        $series = DB::table('product_series')->get();
-        $movements = DB::table('product_movement')->get();
-        $cases = DB::table('product_case')->get();
-        $dials = DB::table('product_dial')->get();
-        $bands = DB::table('product_band')->get();
-        $styles = DB::table('product_style')->get();
+        foreach (self::$foreignAttrs as $key => $value) {
+            $data->{$value} = DB::table('product_' . $value)->get();
+        }
 
-        return view('back-end.products.details',[
-            'data'  => $data, 'brands' => $brands, 'series' => $series,
-            'movements' => $movements, 'cases' => $cases, 'dials' => $dials,
-            'bands' => $bands, 'styles' => $styles
-        ]);
+        return view('back-end.products.details',['data'  => $data]);
     }
 
-    public function postdetails(ProductsRequest $rq, $id = null)
+    // Saving detail of 1 product
+    public function postdetails(Request $rq, $id = null)
     {
-        $data = new Products;
-        $images = array();
+        $data = new Products();
 
         if ($id) {
             $data = Products::find($id);
@@ -60,61 +66,60 @@ class ProductsController extends Controller
             {
                 return redirect()->action('ProductsController@getdetails', ['id' => null]);
             }
-            $images = unserialize($data->images);
+            $data->images = unserialize($data->images);
+            if (!$data->images) {
+                $data->images = array();
+            }
         }
 
-        $attr = array('model', 'name', 'slug', 'description', 'discount', 'detail', 'status', 'price', 'quantity',
-            'series_id', 'brand_id', 'gender_id', 'movement_id',
-            'case_id', 'case_shape', 'case_size',
-            'dial_id', 'dial_color',
-            'band_id', 'band_length', 'band_width', 'band_clasp',
-            'style_id',
-            'feature_water_resstance', 'feature', 'functions', 'upc_code'
-        );
-
-        foreach ($attr as $value) {
-            if ($value == 'slug')
-            {
+        // Saving data to attribute
+        $rq->price = str_replace(".", "", $rq->price);
+        foreach (self::$attrs as $value) {
+            if ($value == 'slug') {
                 $data->{$value} = str_slug($rq->name, '-');
                 continue;
-            }
-            if ($value == 'price') {
-                $rq->{$value} = str_replace(".", "", $rq->{$value});
             }
             $data->{$value} = $rq->{$value};
         }
 
+        // Getting the name of upload images
         $tmp = array();
         if ($rq->hasFile('images')) {
             $list = $rq->file('images');
             foreach ($list as $row) {
                 if (isset($row)) {
                     $name = time() . '-' . $row->getClientOriginalName();
-                    $tmp[] = $name;
                     $row->move('uploads/products/details/', $name);
+                    $tmp[] = $name;
                 }
             }
         }
-        $i = 0;
-        if (!empty($rq->update) && !empty($tmp) && !empty($images)) {
+
+        // In case of update the available images
+        if (!empty($rq->update) && !empty($tmp) && !empty($data->images)) {
+            $i = 0;
             foreach ($rq->update as $value) {
-                unlink('uploads/products/details/' . $images[$value]);
-                $images[$value] = $tmp[$i];
+                unlink('uploads/products/details/' . $data->images[$value]);
+                $data->images[$value] = $tmp[$i];
                 unset($tmp[$i++]);
             }
         }
-        if (!empty($rq->delete) && !empty($images)) {
+
+        // In case of detele the available images
+        if (!empty($rq->delete) && !empty($data->images)) {
             foreach ($rq->delete as $value) {
-                unlink('uploads/products/details/' . $images[$value]);
-                unset($images[$value]);
+                unlink('uploads/products/details/' . $data->images[$value]);
+                unset($data->images[$value]);
             }
         }
+
+        $images = $data->images;
+        // Add new images to images list
         if (!empty($tmp)) {
             foreach ($tmp as $val) {
                 $images[] = $val;
             }
         }
-        
         $data->images = serialize(array_values($images));
 
         try {
@@ -122,14 +127,17 @@ class ProductsController extends Controller
         }
         catch(\Exception $e) { }
         
-        return redirect()->action('ProductsController@getdetails', ['id' => $data->id]);
+        return redirect()->action('ProductsController@getdetails', ['id' => $data->id])
+            ->with(['message'=>'Cập nhật thành công!']);
     }
 
+    // Delete a product by ID
     public function getdel($id)
     {
         $data = Products::find($id);
         if ($data) {
             $data->delete();
+            return 'Đã xóa sản phẩm thành công!';
         }
     }
 }

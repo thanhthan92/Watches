@@ -31,14 +31,14 @@
 	h2.product-name a{text-decoration:none;color:inherit}
 </style>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-	<div class="row">
-		<ol class="breadcrumb">
-			<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-			<li class="active">Đơn đặt hàng</li>
+	<div class="row top-content-backend">
+            <ol class="breadcrumb">
+                <li><a href="{!!url('admin/home')!!}">Trang chủ<use xlink:href="#stroked-home"></use></a></li>
+			<li class="active">Chi tiết đơn đặt hàng</li>
 		</ol>
 	</div>
 
-	<div class="row" style="margin: 20px 0">
+	<div class="row" style="margin: 50px 0">
 	    <div>
 	        <div class="col-xs-12 col-sm-12 col-md-8 cart-table-box">
 	            <div>

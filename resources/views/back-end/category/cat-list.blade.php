@@ -9,19 +9,20 @@
 </script>
 <style scoped>
 	.panel-group a {text-decoration:none;font-weight:bold}
+	.panel-group a:focus,.panel-group a:hover {color:inherit}
 </style>
 
 <!-- main content - noi dung chinh trong chu -->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
+		<div class="row top-content-backend">
 			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+				<li><a href="{!! url('admin/home') !!}">Trang chủ<use xlink:href="#stroked-home"></use></a></li>
 				<li class="active">Danh mục</li>
 			</ol>
 		</div><!--/.row-->
 	
 		
-	<div class="panel-group" id="accordion">
+	<div class="panel-group" id="accordion" style="margin-top: 50px">
 		<!-- <input type="hidden" name="_token" value="{{csrf_token()}}" /> -->
   		<div class="panel panel-default">
 		    <div class="panel-heading">
@@ -302,14 +303,14 @@
 			<div class="panel-heading">
 				<h4 class="panel-title">
 					<a data-toggle="collapse" data-parent="#accordion" href="#collapse7">
-					Thông tin thêm</a>
+					Phong cách</a>
 				</h4>
 			</div>
 			<div id="collapse7" class="panel-collapse collapse">
 				<div class="panel-body">
 					<div class="panel-heading">
-						<button type="button" class="btn btn-primary pull-right" onclick="admore('productStyle', 'Thêm mới thông tin thêm', '#style', '#btnSaveStyle')">Thêm mới thông tin thêm</button>
-						<button id="btnSaveStyle" style="display: none" type="button" class="btn btn-primary pull-right" onclick="saveData('productStyle','style', 'Thêm mới thông tin thêm', 'btnSaveStyle')">Lưu thông tin</button>
+						<button type="button" class="btn btn-primary pull-right" onclick="admore('productStyle', 'Thêm mới phong cách', '#style', '#btnSaveStyle')">Thêm mới phong cách</button>
+						<button id="btnSaveStyle" style="display: none" type="button" class="btn btn-primary pull-right" onclick="saveData('productStyle','style', 'Thêm mới phong cách', 'btnSaveStyle')">Lưu thông tin</button>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">
@@ -322,7 +323,7 @@
 								</thead>
 								<tbody>
 									<tr>
-										<?php listStyles($data, 'productStyle', 'Thêm mới thông tin thêm', 'btnSaveStyle'); ?> 
+										<?php listStyles($data, 'productStyle', 'Thêm mới phong cách', 'btnSaveStyle'); ?> 
 									</tr>									
 								</tbody>
 							</table>
@@ -407,7 +408,7 @@
 		}
     	$.ajax({
     		method: "POST",
-	       	url: "/admin/danhmuc/addBrand",
+	       	url: "{!!url('/admin/danhmuc/addBrand')!!}",
 	       	data:{ brands: jsonBrands, _token: "{{csrf_token()}}"}
     	})
 		.done(function(msg){
@@ -434,7 +435,7 @@
     	id = id +","+ inputName;
     	$.ajax({
     		method: "POST",
-	       	url: "/admin/danhmuc/del",
+	       	url: "{!!url('/admin/danhmuc/del')!!}",
 	       	data:{ id: id, _token: "{{csrf_token()}}"}
     	})
 		.done(function(msg){

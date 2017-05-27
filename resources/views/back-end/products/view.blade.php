@@ -1,22 +1,22 @@
 @extends('back-end.layouts.master')
 @section('content')
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-		<div class="row">
-			<ol class="breadcrumb">
-				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+		<div class="row top-content-backend">
+            <ol class="breadcrumb">
+                <li><a href="{!!url('admin/home')!!}">Trang chủ<use xlink:href="#stroked-home"></use></a></li>
 				<li class="active">Quản lý sản phẩm</li>
 			</ol>
-		</div
-		<div class="col-xs-12 col-sm-12" style="margin-top: 30px">
-			<div class="col-xs-12 col-sm-3 no-padding">
-				<a class="btn btn-primary" style="margin: 20px 0" href="{!!url('admin/products/details')!!}">
-					Thêm mới sản phẩm
-				</a>
-			</div>
-			<div class="col-xs-12 col-sm-9 text-right no-padding">
-				{!! $data->render() !!}
-			</div>
-			<table class="table table-striped">
+
+            <div class="form-group col-xs-12 col-sm-12">
+                <button type="button" class="btn btn-primary" style="padding: 5px 25px" onclick="window.location = '{!! url('admin/products/details') !!}'">
+                    Thêm sản phẩm mới</button>
+            </div>
+		</div>
+		<?php $top = $data->render() ? '80px' : '100px'; ?>
+		<div class="col-xs-12 col-sm-12" style="margin-top: {!! $top !!}">
+			{!! $data->render() !!}
+
+			<table class="table">
 				<tr>
 					<th class="col-sm-5">Tên sản phẩm</th>
 					<th>Thương hiệu</th>
@@ -60,15 +60,16 @@
         }
 
         function del(el, id) {
-        	var cont = confirm("Bạn có muốn xóa sản phẩm này không?");
-        	if (!cont) {
+        	if (!confirm("Bạn có muốn xóa sản phẩm này không?")) {
         		return;
         	}
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 				if (this.readyState == 4 && this.status == 200) {
-					el.parentElement.parentElement.remove();
-					alert("Xóa sản phẩm thành công");
+					if (xhttp.responseText) {
+						el.parentElement.parentElement.remove();
+						message(xhttp.responseText);
+					}
 				}
 			};
 			xhttp.open("GET", "{!! url('admin/products/del/') !!}" + '/' + id, true);

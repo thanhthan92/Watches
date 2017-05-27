@@ -2,18 +2,26 @@
 @section('content')
 
 @if (session('message'))
-    <script type="text/javascript">alert("Cập nhật thành công!");</script>
-@endif
+        <script type="text/javascript">
+            $(document).ready(function() {
+                message('{!! session('message') !!}');
+            });
+        </script>
+    @endif
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div class="row">
+        <div class="row top-content-backend">
             <ol class="breadcrumb">
-                <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+                <li><a href="{!! url('admin/home') !!}">Trang chủ<use xlink:href="#stroked-home"></use></a></li>
                 <li>Một số thông tin chung</li>
             </ol>
+            <div class="form-group col-xs-12 col-sm-12">
+                <button type="button" class="btn btn-primary" style="padding: 5px 25px" onclick="submitFrm()">
+                    Lưu lại</button>
+            </div>
         </div>
 
-        <form method="post" style="margin-top: 50px;">
+        <form method="post" style="margin-top: 100px;">
             <input type="hidden" name="_token" value="{{csrf_token()}}" />
 
             <div class="form-group col-xs-12 col-sm-12">
@@ -161,10 +169,6 @@
                     });
                 </script>
             </div>
-
-            <div class="form-group col-xs-12 col-sm-12">
-                <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
-            </div>
         </form>
 
     </div>
@@ -173,6 +177,10 @@
         var obj = document.getElementById('metadata');
         if (obj != null && obj != undefined) {
             obj.className = "active";
+        }
+
+        function  submitFrm() {
+            document.getElementsByTagName('form')[0].submit();
         }
 
         function checkbox(checkName, triggerName) {
