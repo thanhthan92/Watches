@@ -129,7 +129,7 @@
 		$html  = '<li class="col-xs-6 col-sm-6 col-md-3" style="margin-bottom: 50px">';
     	$html .= '<div class="productImg">';
         $html .= '<a href="' . $url . '" title="' . $data->name . '" class="product-image">';
-        $html .= '<img src="' . url('uploads/products/details/' . $images[0]) . '">';
+        $html .= '<img src="' . url('uploads/products/details/' . $images[0]) . '" style="max-height:250px">';
         $html .= '</a>';
 	    $html .= '<h2 class="product-name">';
 	    $html .= '<a href="' . $url . '" title="' . $data->name . '"><strong></strong><span>' . $data->name . '</span></a>';

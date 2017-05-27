@@ -183,7 +183,7 @@
                                 return;
                             }
 
-                            document.querySelector("#user-information form").submit();
+                            document.querySelector(".user-information form").submit();
                         }
                     </script>
                 </div>

@@ -76,33 +76,36 @@ class CartController extends Controller
 
     public function postcheckoutcart(Request $rq)
     {
-        // Get or set user - Start
+        if (!$rq->user_name || !$rq->user_phone || !$rq->user_address) {
+            return redirect()->route('getcheckoutcart');
+        }
+
+        // Getting or setting the user
         $user = User::where('email', $rq->user_email)->orWhere('phone', $rq->user_phone)->first();
         if ($user == null) {
             $user = new User();
         }
         $attrs = array('name', 'phone', 'email', 'address');
         foreach ($attrs as $value) {
-            $user->{$value} = $rq->{'user_' . $value};
+            if ($rq->{'user_' . $value}) {
+                $user->{$value} = $rq->{'user_' . $value};
+            }
         }
         $user->save();
-        // Get or set user - End
 
-        // Send email - Start
+        // Sending email
         $admin = DB::table('website_metadata')->where('key', 'website_email')->value('value');
         if (!empty($admin)) {
             Mail::send('cart.mail', ['user' => $user], function($m) use ($user, $admin) {
-                $subject = '[Đơn đặt hàng] ' . $user['name'];
-                $m->from(env('MAIL_USERNAME'), 'Bộ phận đặt hàng');
-                $m->to($admin, 'Bộ phận tiếp nhận đặt hàng')->subject($subject);
+                $m->from(env('MAIL_USERNAME'), 'Bộ phận đặt hàng')->subject('[Đơn đặt hàng] ' . $user->name);
+                $m->to($admin, 'Bộ phận tiếp nhận đặt hàng');
                 if ($user->email) {
                     $m->cc($user->email, $user->name);
                 }
             });
         }
-        // Send email - End
 
-        // Saving the order - Start
+        // Saving the order
         $order = new Orders();
         $order->c_id = $user->id;
         $order->qty = Cart::count();
@@ -118,11 +121,8 @@ class CartController extends Controller
             $details->qty = $val->qty;
             $details->save();
         }
-        $order->save();
-        // Saving the order - End
 
         Cart::destroy();
-
         return view('cart.products-cart-checkout', ['end' => true, 'user' => $user]);
     }
 }

@@ -7,7 +7,7 @@ use App\Http\Requests;
 use App\Category;
 use DateTime;
 use App\Product_brand;
-use App\Product_Movement;
+use App\Product_movement;
 use App\Product_series;
 use App\Product_case;
 use App\Product_dial;
@@ -23,7 +23,7 @@ class CategoryController extends Controller
 		$data = Category::all();
       $data['brands']    = Product_brand::all();
       $data['series']    = Product_series::all();
-      $data['movements'] = Product_Movement::all();
+      $data['movements'] = Product_movement::all();
       $data['cases']     = Product_case::all();
       $data['dials']     = Product_dial::all();
       $data['bands']     = Product_band::all();
@@ -83,7 +83,7 @@ class CategoryController extends Controller
                   $brandsUpdate = array_merge($this->browsData($value->value, "Product_series"), $brandsUpdate);
                   break;
                case 'productMovement':
-                  $brandsUpdate = array_merge($this->browsData($value->value, "Product_Movement"), $brandsUpdate);
+                  $brandsUpdate = array_merge($this->browsData($value->value, "Product_movement"), $brandsUpdate);
                   break;
                case 'productCase':
                   $brandsUpdate = array_merge($this->browsData($value->value, "Product_case"), $brandsUpdate);
