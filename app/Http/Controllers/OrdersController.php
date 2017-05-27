@@ -44,18 +44,17 @@ class OrdersController extends Controller
             $tmp->options['url'] = url('/chi-tiet/' . $product->slug . '-' . $product->id . '.html');
             $data[] = $tmp;
         }
-    	return view('back-end.orders.detail',['data' => $data, 'user' => $user]);
+    	return view('back-end.orders.detail',['data' => $data, 'user' => $user, 'order' => $order]);
     }
     
-    public function postdetail($id)
+    public function postdetail(Request $rq, $id)
     {
     	$order = Orders::find($id);
 
     	$order->status = 1;
     	$order->save();
-    	return redirect('admin/donhang')
-      	->with(['flash_level'=>'result_msg','flash_massage'=>'Đã xác nhận đơn hàng thành công!']);    	
 
+        return $order->status;
     }
 
     public function getdel($id)

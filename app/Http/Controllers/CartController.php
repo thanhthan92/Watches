@@ -112,7 +112,8 @@ class CartController extends Controller
         $order->total = 0;
         $order->save();
 
-        foreach(Cart::content() as $val) {
+        $tmp = Cart::content();
+        foreach($tmp as $val) {
             $order->total += $val->price * $val->qty;
 
             $details = new Orders_detail();
@@ -121,6 +122,7 @@ class CartController extends Controller
             $details->qty = $val->qty;
             $details->save();
         }
+        $order->save();
 
         Cart::destroy();
         return view('cart.products-cart-checkout', ['end' => true, 'user' => $user]);

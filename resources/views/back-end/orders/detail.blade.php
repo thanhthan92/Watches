@@ -1,14 +1,14 @@
 <?php
-    $total = 0;
+	$total = 0;
 ?>
 
 @extends('back-end.layouts.master')
 @section('content')
 <script type="text/javascript">
-    var obj = document.getElementById('order');
-    if (obj != null && obj != undefined) {
-        obj.className = "active";
-    }
+	var obj = document.getElementById('order');
+	if (obj != null && obj != undefined) {
+		obj.className = "active";
+	}
 </script>
 <style scoped>
 	.cart.display-single-price{font-family:sans-serif;font-size:14px}
@@ -29,137 +29,154 @@
 	.data-table.cart-table th{text-transform:uppercase;font-size:13px;background:0;border-top:solid 1px #d4d4d4;border-bottom:solid 1px #d4d4d4!important;color:#333;padding:12px 8px;font-weight:400;border-right:0 solid #c2d3e0;white-space:nowrap;vertical-align:middle}
 	h2.product-name{font-size:14px;color:#333;margin:0;font-weight:400}
 	h2.product-name a{text-decoration:none;color:inherit}
+	.cart-totals table td {padding: 10px 0!important;border: none!important;}
 </style>
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
 	<div class="row top-content-backend">
-            <ol class="breadcrumb">
-                <li><a href="{!!url('admin/home')!!}">Trang chủ<use xlink:href="#stroked-home"></use></a></li>
+		<ol class="breadcrumb">
+			<li><a href="{!!url('admin/home')!!}">Trang chủ<use xlink:href="#stroked-home"></use></a></li>
+			<li><a href="{!!url('admin/donhang')!!}">Quản lý đơn hàng<use xlink:href="#stroked-home"></use></a></li>
 			<li class="active">Chi tiết đơn đặt hàng</li>
 		</ol>
+		
+		<?php
+			$text = $order->status == 1 ? "Đã xác nhận giao hàng" : "Xác nhận đã giao hàng?";
+			$enabled = $order->status == 1 ? "disabled" : "";
+		?>
+		<div class="form-group col-xs-12 col-sm-12">
+			<button type="button" {!! $enabled !!} class="btn btn-primary" onclick="shipping(this)">{!! $text !!}</button>
+		</div>				
 	</div>
 
-	<div class="row" style="margin: 50px 0">
-	    <div>
-	        <div class="col-xs-12 col-sm-12 col-md-8 cart-table-box">
-	            <div>
-	                <div class="panel panel-default">
-	                    <div class="panel-heading">
-	                        <h4 class="panel-title">
-	                            <a data-toggle="collapse" href=".user-information">
-	                            Thông tin người đặt mua</a>
-	                        </h4>
-	                    </div>
-	                    <div class="user-information" class="panel-collapse collapse in">
-	                        <div class="panel-body">
-	                            <form method="POST" action="/shopping-cart/checkout">
-	                                <div class="form-group">
-	                                    <label for="user-name">Họ và tên</label>
-	                                    <p class="form-control-static">{!! $user->name !!}</p>
-	                                </div>
-	                                <div class="form-group col-xs-12 col-sm-12 col-md-5 phone">
-	                                    <label for="user-phone">Số điện thoại</label>
-	                                    <p class="form-control-static">{!! $user->phone !!}</p>
-	                                </div>
-	                                <div class="form-group col-xs-12 col-sm-12 col-md-7 email">
-	                                    <label for="user-email">Email</label>
-	                                    <p class="form-control-static">{!! $user->email !!}</p>
-	                                </div>
-	                                <div class="form-group">
-	                                    <label for="user-address">Địa chỉ giao hàng</label>
-	                                    <p class="form-control-static">{!! $user->address !!}</p>
-	                                </div>
-	                            </form>
-	                        </div>
-	                    </div>
-	                </div>
+	<div class="row" style="margin: 100px 0 0">
+		<div>
+			<div class="col-xs-12 col-sm-12 col-md-8 cart-table-box">
+				<div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" href=".user-information">
+								Thông tin người đặt mua</a>
+							</h4>
+						</div>
+						<div class="user-information" class="panel-collapse collapse in">
+							<div class="panel-body">
+								<form method="POST" action="/shopping-cart/checkout">
+									<div class="form-group">
+										<label for="user-name">Họ và tên</label>
+										<p class="form-control-static">{!! $user->name !!}</p>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-5 phone">
+										<label for="user-phone">Số điện thoại</label>
+										<p class="form-control-static">{!! $user->phone !!}</p>
+									</div>
+									<div class="form-group col-xs-12 col-sm-12 col-md-7 email">
+										<label for="user-email">Email</label>
+										<p class="form-control-static">{!! $user->email !!}</p>
+									</div>
+									<div class="form-group">
+										<label for="user-address">Địa chỉ giao hàng</label>
+										<p class="form-control-static">{!! $user->address !!}</p>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
 
-	                <div class="panel panel-default">
-	                    <div class="panel-heading">
-	                        <h4 class="panel-title">
-	                            <a data-toggle="collapse" href=".user-information-details">
-	                            Chi tiết đơn hàng</a>
-	                        </h4>
-	                    </div>
-	                    <div class="user-information-details" class="panel-collapse collapse in">
-	                        <form>
-	                            <table id="shopping-cart-table" class="cart-table data-table table table-striped">
-	                                <colgroup>
-	                                    <col width="1"><col width="1"><col width="1"><col width="1"><col width="1"><col width="1">
-	                                </colgroup>
-	                                <thead>
-	                                    <tr class="first last">
-	                                        <th rowspan="1">&nbsp;</th>
-	                                        <th rowspan="1"><span class="nobr">Sản phẩm</span></th>
-	                                        <th class="a-center cart-price-head" colspan="1"> <span class="nobr">Giá</span></th>
-	                                        <th rowspan="1" class="a-center">Số lượng</th>
-	                                        <th class="a-center cart-total-head" colspan="1">Tổng</th>
-	                                    </tr>
-	                                </thead>
-	                                <tbody>
-	                                    @foreach($data as $val)
-	                                    <?php $total += $val->price * $val->qty; ?>
-	                                    <tr class="odd">
-	                                        <td class="product-cart-image">
-	                                            <a href="{!! $val->options['url'] !!}" title="{!! $val->name !!}" class="product-image">
-	                                                <img src="{!! $val->options['image'] !!}" alt="{!! $val->name !!}">
-	                                            </a>
-	                                        </td>
-	                                        <td class="product-cart-info">
-	                                            <h2 class="product-name">
-	                                                <a href="{!! $val->options['url'] !!}" title="{!! $val->name !!}">
-	                                                    {!! $val->name !!}
-	                                                </a>
-	                                            </h2>
-	                                        </td>
-	                                        <td class="product-cart-price" data-rwd-label="Price" data-rwd-tax-label="Excl. Tax">
-	                                            <span class="cart-price"><span class="price">{!! number_format($val->price, 0, ',', '.') !!} VNĐ</span></span>
-	                                        </td>
-	                                        <td class="product-cart-actions" data-rwd-label="Qty">
-	                                            {!! $val->qty !!}
-	                                        </td>
-	                                        <td class="product-cart-total" data-rwd-label="Subtotal">
-	                                            <span class="cart-price"><span class="price">{!! number_format($val->price*$val->qty, 0, ',', '.') !!} VNĐ</span></span>
-	                                        </td>
-	                                    </tr>
-	                                    @endforeach
-	                                </tbody>
-	                            </table>
-	                        </form>
-	                    </div>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="col-xs-12 col-sm-12 col-md-4 cart-total-box">
-	            <div class="cart-totals-wrapper">
-	                <div class="cart-totals">
-	                    <table class="table">
-	                        <colgroup>
-	                            <col>
-	                            <col width="1">
-	                        </colgroup>
-	                        <tfoot>
-	                            <tr>
-	                                <td style="" class="a-right" colspan="1"><strong>Tổng tiền</strong></td>
-	                                <td style="" class="a-right"> <span class="price"><strong>{!! number_format($total, 0, ',', '.') !!} VNĐ</strong></span></td>
-	                            </tr>
-	                        </tfoot>
-	                    </table>
-	                    <ul class="checkout-types bottom">
-	                        <li class="method-checkout-cart-methods-onepage-bottom">
-	                            <button type="button" title="Proceed to Checkout" class="btn btn-success btn-lg" onclick="checkout()">Xác nhận đã giao hàng?</button>
-	                        </li>
-	                    </ul>
-	                    <script type="text/javascript">
-	                    function checkout() {
-
-	                    }
-	                    </script>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title">
+								<a data-toggle="collapse" href=".user-information-details">
+								Chi tiết đơn hàng</a>
+							</h4>
+						</div>
+						<div class="user-information-details" class="panel-collapse collapse in">
+							<form>
+								<table id="shopping-cart-table" class="cart-table data-table table table-striped">
+									<colgroup>
+										<col width="1"><col width="1"><col width="1"><col width="1"><col width="1"><col width="1">
+									</colgroup>
+									<thead>
+										<tr class="first last">
+											<th rowspan="1">&nbsp;</th>
+											<th rowspan="1"><span class="nobr">Sản phẩm</span></th>
+											<th class="a-center cart-price-head" colspan="1"> <span class="nobr">Giá</span></th>
+											<th rowspan="1" class="a-center">Số lượng</th>
+											<th class="a-center cart-total-head" colspan="1">Tổng</th>
+										</tr>
+									</thead>
+									<tbody>
+										@foreach($data as $val)
+										<?php $total += $val->price * $val->qty; ?>
+										<tr class="odd">
+											<td class="product-cart-image">
+												<a href="{!! $val->options['url'] !!}" title="{!! $val->name !!}" class="product-image">
+													<img src="{!! $val->options['image'] !!}" alt="{!! $val->name !!}">
+												</a>
+											</td>
+											<td class="product-cart-info">
+												<h2 class="product-name">
+													<a href="{!! $val->options['url'] !!}" title="{!! $val->name !!}">
+														{!! $val->name !!}
+													</a>
+												</h2>
+											</td>
+											<td class="product-cart-price" data-rwd-label="Price" data-rwd-tax-label="Excl. Tax">
+												<span class="cart-price"><span class="price">{!! number_format($val->price, 0, ',', '.') !!} VNĐ</span></span>
+											</td>
+											<td class="product-cart-actions" data-rwd-label="Qty">
+												{!! $val->qty !!}
+											</td>
+											<td class="product-cart-total" data-rwd-label="Subtotal">
+												<span class="cart-price"><span class="price">{!! number_format($val->price*$val->qty, 0, ',', '.') !!} VNĐ</span></span>
+											</td>
+										</tr>
+										@endforeach
+									</tbody>
+								</table>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-4 cart-total-box">
+				<div class="cart-totals-wrapper">
+					<div class="cart-totals" style="padding: 10px;border: solid 1px #CCC">
+						<table class="table">
+								<tr>
+									<td style="vertical-align: middle"><strong>Thành tiền</strong></td>
+									<td style="vertical-align: middle;text-align: right"><span class="price"><strong>{!! number_format($total, 0, ',', '.') !!} VNĐ</strong></span></td>
+								</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 
+<script type="text/javascript">
+	var obj = document.getElementById('order');
+    if (obj != null && obj != undefined) {
+        obj.className = "active";
+    }
+	function shipping(el) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				if (xhttp.responseText == 1) {
+					el.innerHTML = "Đã xác nhận giao hàng";
+					el.disabled = true;
+					message(el.innerHTML);
+				}
+			}
+		};
+		xhttp.open("POST", "{!! url('admin/donhang/detail/' . $order->id) !!}", true);
+
+		var data = new FormData();
+		data.append('_token', '{{csrf_token()}}');
+		xhttp.send(data);
+	}
+</script>
 	
 @endsection
