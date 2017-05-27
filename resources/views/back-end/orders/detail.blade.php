@@ -141,8 +141,8 @@
 			</div>
 			<div class="col-xs-12 col-sm-12 col-md-4 cart-total-box">
 				<div class="cart-totals-wrapper">
-					<div class="cart-totals" style="padding: 10px;border: solid 1px #CCC">
-						<table class="table">
+					<div class="cart-totals" style="padding: 5px 10px;border: solid 1px #CCC;">
+						<table class="table" style="margin-bottom: 0">
 								<tr>
 									<td style="vertical-align: middle"><strong>Thành tiền</strong></td>
 									<td style="vertical-align: middle;text-align: right"><span class="price"><strong>{!! number_format($total, 0, ',', '.') !!} VNĐ</strong></span></td>
