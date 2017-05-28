@@ -140,12 +140,12 @@
 	    	$data->discount = 0;
 	    }
     	$html .= '<span class="regular-price">';
-    	$html .= '<span id="product-price-1" class="price">' . number_format($data->price * (100 - $data->discount) / 100, 0, ',', '.') . ' VNĐ</span>';
+    	$html .= '<span id="product-price-1" class="price" style="display:inline-block">' . number_format($data->price * (100 - $data->discount) / 100, 0, ',', '.') . ' VNĐ</span>';
     	$html .= '</span>';
 	    if ($data->discount) {
-		    $html .= '<span class="old_price">' . number_format($data->price, 0, ',', '.') . ' VNĐ</span>';
+		    $html .= '<span class="old_price" style="display:inline-block">' . number_format($data->price, 0, ',', '.') . ' VNĐ</span>';
 		    $html .= '<span class="save">';
-		    $html .= '<span class="savePr">Tiết kiệm ' . number_format($data->price * $data->discount / 100, 0, ',', '.') . 'VNĐ (' . $data->discount . '%)</span>';
+		    $html .= '<span class="savePr" style="display:inline-block">Tiết kiệm ' . number_format($data->price * $data->discount / 100, 0, ',', '.') . 'VNĐ (' . $data->discount . '%)</span>';
 		    $html .= '</span>';
 		}
 	    $html .= '</div>';
